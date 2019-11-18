@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+    <persistence-unit name="persistence-data">
+	       	  <class>aht.entity.AhtContract</class>
+	       	  <class>aht.entity.AhtContractEmp</class>
+	       	  <class>aht.entity.AhtDepartment</class>
+	       	  <class>aht.entity.AhtEmployee</class>
+	       	  <class>aht.entity.AhtParts</class>
+	       	  <class>aht.entity.AhtRole</class>
+	       	  <class>aht.entity.AhtTraining</class>
+	       	  <class>aht.entity.AhtTraningEmp</class>
+	       	  <class>aht.entity.AhtUser</class>
+	       	  <class>aht.entity.AhtUserRole</class>
+              <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <properties>
+            <property name="hibernate.connection.charSet" value="utf8"/>
+            <property name="hibernate.connection.characterEncoding" value="utf8"/>
+            <property name="hibernate.connection.useUnicode" value="true"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+        </properties>
+    </persistence-unit>
+</persistence>
