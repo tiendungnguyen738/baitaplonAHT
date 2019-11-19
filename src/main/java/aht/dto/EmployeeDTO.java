@@ -3,7 +3,6 @@ package aht.dto;
 import java.util.Set;
 
 import aht.entity.AhtContractEmp;
-import aht.entity.AhtDepartment;
 import aht.entity.AhtTraningEmp;
 
 public class EmployeeDTO {
@@ -16,7 +15,7 @@ public class EmployeeDTO {
 	private String empAddress;
 	private String empPhone;
 	private int empType;
-	private AhtDepartment ahtDepartment;
+	private DepartmentDTO department;
 	private Set<AhtTraningEmp> ahtTraningEmp;
 	private Set<AhtContractEmp> ahtContractEmp;
 	
@@ -44,11 +43,11 @@ public class EmployeeDTO {
 	public void setEmpType(int empType) {
 		this.empType = empType;
 	}
-	public AhtDepartment getAhtDepartment() {
-		return ahtDepartment;
+	public DepartmentDTO getDepartment() {
+		return department;
 	}
-	public void setAhtDepartment(AhtDepartment ahtDepartment) {
-		this.ahtDepartment = ahtDepartment;
+	public void setDepartment(DepartmentDTO ahtDepartment) {
+		this.department = ahtDepartment;
 	}
 	public Set<AhtTraningEmp> getAhtTraningEmp() {
 		return ahtTraningEmp;

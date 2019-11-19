@@ -7,8 +7,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import aht.dto.DepartmentDTO;
 import aht.dto.EmployeeDTO;
-import aht.entity.AhtDepartment;
 import aht.entity.AhtEmployee;
 import aht.repository.EmployeeRepository;
 import aht.service.EmployeeService;
@@ -27,19 +27,19 @@ public class EmployeeServiceImp implements EmployeeService{
 	@Override
 	public List<EmployeeDTO> layDanhSachNhanVien() {
 		List<AhtEmployee> listEm = employeeRepository.findAll();
-		List<EmployeeDTO> listEmp = new ArrayList<EmployeeDTO>();
+		List<EmployeeDTO> listEmpDTO = new ArrayList<EmployeeDTO>();
 		ModelMapper modelMapper = new ModelMapper();
 		for (AhtEmployee ahtEmployee : listEm) {
 				
-				AhtDepartment depart = new AhtDepartment();
-				depart.setId(ahtEmployee.getAhtDepartment().getId());
-				depart.setDepartmentName(ahtEmployee.getAhtDepartment().getDepartmentName());
-				ahtEmployee.setAhtDepartment(depart);
+				DepartmentDTO departDTO = new DepartmentDTO();
+				departDTO.setId(ahtEmployee.getAhtDepartment().getId());
+				departDTO.setDepartmentName(ahtEmployee.getAhtDepartment().getDepartmentName());
 				
 				EmployeeDTO em = modelMapper.map(ahtEmployee, EmployeeDTO.class);
-				listEmp.add(em);
+				em.setDepartment(departDTO);
+				listEmpDTO.add(em);
 		}
-		return listEmp;
+		return listEmpDTO;
 	}
 
 	@Override

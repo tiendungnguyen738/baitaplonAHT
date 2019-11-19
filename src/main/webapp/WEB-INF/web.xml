@@ -8,8 +8,6 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-    
-    
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
@@ -44,4 +42,5 @@
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>ERROR</dispatcher>
 	</filter-mapping> 
+	
 </web-app>
