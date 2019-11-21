@@ -2,42 +2,28 @@ package aht.dto;
 
 import java.util.Set;
 
-import aht.entity.AhtEmployee;
-import aht.entity.AhtParts;
-
 public class DepartmentDTO {
 	private Long id;
-	private AhtParts ahtParts;
-	private Set<AhtEmployee> ahtEmployee;
+	private PartDTO partDTO;
+	private Set<EmployeeDTO> employeeDTOs;
 	private String departmentName;
-	
-	public DepartmentDTO() {
-		super();
-	}
-	public DepartmentDTO(Long id, AhtParts ahtParts, Set<AhtEmployee> ahtEmployee, String departmentName) {
-		super();
-		this.id = id;
-		this.ahtParts = ahtParts;
-		this.ahtEmployee = ahtEmployee;
-		this.departmentName = departmentName;
-	}
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public AhtParts getAhtParts() {
-		return ahtParts;
+	public PartDTO getPartDTO() {
+		return partDTO;
 	}
-	public void setAhtParts(AhtParts ahtParts) {
-		this.ahtParts = ahtParts;
+	public void setPartDTO(PartDTO partDTO) {
+		this.partDTO = partDTO;
 	}
-	public Set<AhtEmployee> getAhtEmployee() {
-		return ahtEmployee;
+	public Set<EmployeeDTO> getEmployeeDTOs() {
+		return employeeDTOs;
 	}
-	public void setAhtEmployee(Set<AhtEmployee> ahtEmployee) {
-		this.ahtEmployee = ahtEmployee;
+	public void setEmployeeDTOs(Set<EmployeeDTO> employeeDTOs) {
+		this.employeeDTOs = employeeDTOs;
 	}
 	public String getDepartmentName() {
 		return departmentName;

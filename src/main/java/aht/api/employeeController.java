@@ -11,12 +11,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import aht.dto.DepartmentDTO;
 import aht.dto.EmployeeDTO;
+import aht.entity.AhtDepartment;
 import aht.entity.AhtEmployee;
+import aht.service.impl.AhtDepartmentServiceImpl;
 import aht.service.impl.EmployeeServiceImp;
 
 @CrossOrigin(origins="http://localhost:4200",maxAge=3600)
@@ -25,6 +26,9 @@ public class employeeController {
 
 	@Autowired
 	private EmployeeServiceImp employeeServiceImpl;
+	
+	@Autowired
+	private AhtDepartmentServiceImpl ahtDepartmentServiceImpl;
 
 	@GetMapping("/api/employee")
 	public List<EmployeeDTO> listEmployeeDTO(){
@@ -49,20 +53,32 @@ public class employeeController {
 	@PostMapping("/api/employee")
 	public EmployeeDTO addEmployee(@RequestBody EmployeeDTO employee) {
 		ModelMapper modelMapper = new ModelMapper();
+		AhtDepartment depart = ahtDepartmentServiceImpl.layPhongBan(employee.getDepartment().getId());
 		AhtEmployee emp = modelMapper.map(employee, AhtEmployee.class);
+		emp.setAhtDepartment(depart);
+		
 		employeeServiceImpl.themNhanVien(emp);
-		return employee;
+		
+		EmployeeDTO eDTO = modelMapper.map(emp, EmployeeDTO.class);
+		DepartmentDTO pb  = new DepartmentDTO();
+		pb.setId(depart.getId());
+		pb.setDepartmentName(depart.getDepartmentName());
+		eDTO.setDepartment(pb);
+		return eDTO;
 	}
 	
 	@PutMapping("/api/employee")
-	public void editEmployee(@RequestBody EmployeeDTO employee) {
+	public EmployeeDTO editEmployee(@RequestBody EmployeeDTO employee) {
 		ModelMapper modelMapper = new ModelMapper();
+		AhtDepartment depart = ahtDepartmentServiceImpl.layPhongBan(employee.getDepartment().getId());
 		AhtEmployee em = modelMapper.map(employee, AhtEmployee.class);
+		em.setAhtDepartment(depart);
 		employeeServiceImpl.suaNhanVien(em);
+		return employee;
 	}
 	
-	@DeleteMapping("/api/employee")
-	public void deleteEmployee(@RequestParam Long id) {
+	@DeleteMapping("/api/employee/{id}")
+	public void deleteEmployee(@PathVariable Long id) {
 		employeeServiceImpl.xoaNhanVien(id);
 	}
 }

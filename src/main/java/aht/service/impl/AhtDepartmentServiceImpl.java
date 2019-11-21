@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import aht.dto.DepartmentDTO;
+import aht.dto.PartDTO;
 import aht.entity.AhtDepartment;
 import aht.entity.AhtParts;
 import aht.repository.AhtDepartMentRepository;
@@ -76,13 +77,13 @@ public class AhtDepartmentServiceImpl implements AhtDepartmentService{
 			AhtDepartment phong =  ahtDepartMentRepository.findOne(id);
 			DepartmentDTO phongBan = new DepartmentDTO();
 			
-			AhtParts boPhan = new AhtParts();
+			PartDTO boPhan = new PartDTO();
 			boPhan.setId(phong.getAhtParts().getId());
 			boPhan.setPartsName(phong.getAhtParts().getPartsName());
 			
 			phongBan.setDepartmentName(phong.getDepartmentName());
 			phongBan.setId(phong.getId());
-			phongBan.setAhtParts(boPhan);
+			phongBan.setPartDTO(boPhan);
 			return phongBan;
 	}
 
@@ -105,6 +106,16 @@ public class AhtDepartmentServiceImpl implements AhtDepartmentService{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public AhtDepartment layPhongBan(Long id) {
+		return ahtDepartMentRepository.findOne(id);
+	}
+
+	@Override
+	public List<AhtDepartment> dsPhongBan() {
+		return ahtDepartMentRepository.findAll();
 	}
 
 }
