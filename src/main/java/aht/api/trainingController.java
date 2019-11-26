@@ -54,8 +54,8 @@ public class trainingController {
 		trainingServiceImpl.editTrainning(train);
 	}
 	
-	@DeleteMapping("/api/training")
-	public void deleteTraining(@RequestParam Long id) {
+	@DeleteMapping("/api/training/{id}")
+	public void deleteTraining(@PathVariable Long id) {
 		trainingServiceImpl.deleteTrainning(id);
 	}
 }

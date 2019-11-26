@@ -30,29 +30,14 @@
                                             <a class="nav-link" href="<c:url value='/trang-user/quan-ly-pb'/>">Danh Mục Phòng Ban</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-1" aria-controls="submenu-1-1">Danh Mục Khóa Đào Tạo</a>
+                                            <a class="nav-link" href="<c:url value='/trang-user/quan-ly-training-emp'/>">Danh Mục Khóa Đào Tạo</a>
                                         </li>
                                     </ul>
                                 </div>
                             </li>
                             
                             <!--Hết danh mục -->
-                            
-                          	<!-- quản lý hồ sơ nhân sự -->
-                            
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fa-rocket"></i>Quản Lý Hồ Sơ Nhân Sự</a>
-                            </li>
-                            
-                            <!-- hết quản lý hồ sơ nhân sự -->
                            
-                           	<!-- quản lý đào tạo -->
-                          	
-                          	<li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fa-rocket"></i>Quản Lý Đào Tạo</a>
-                            </li>
-                            
-                            <!-- hết quản lý đào tạo -->
                             <li class="nav-divider">
                                 Features
                             </li>
