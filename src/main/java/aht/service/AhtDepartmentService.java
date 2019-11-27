@@ -15,5 +15,5 @@ public interface AhtDepartmentService {
 	DepartmentDTO layPhongBanvsChuyenDoi(Long id);
 	void suaPhongBan(String phongBanJson);
 	AhtDepartment layPhongBan(Long id);
-	List<AhtDepartment> dsPhongBan();
+	List<DepartmentDTO> dsPhongBan();
 }

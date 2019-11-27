@@ -43,8 +43,11 @@
 			<div class="col-md-12 col-sm-12" style="float: right;">
 			 	<h2 style="text-align: right;">Danh Sách Khóa Đào Tạo</h2>
 			    <hr />
-				<button type="button" class="btn btn-danger" id="button-xoa" 
-						style="float: right; display: inline;font-size: 14px; margin-bottom: 2%;">Xóa</button>
+			    <a href="<c:url value='/trang-user/quan-ly-training-emp/them-khoa-dao-tao'/>">
+				    <button type="button" class="btn btn-outline-primary" style="border-radius:27%">ADD</button>
+				</a>
+				<button type="button" class="btn btn-outline-danger" id="button-xoa" 
+						style="float: right; display: inline;margin-right: 4%; margin-bottom: 2%;border-radius: 29%;">Xóa</button>
 				<table class="table table-hover" id="bang-bo-phan">
 					<thead>
 						<tr>
@@ -54,8 +57,8 @@
 							<th>Ngày Kết Thúc</th>
 							<th>Trạng Thái</th>
 							<th>Kết Quả</th>
-							<th>Mã Nhân Viên</th>
-							<th>Mã Đào Tạo</th>
+							<th>Tên Nhân Viên</th>
+							<th>Khóa Đào Tạo</th>
 							<th>Setting</th>
 						</tr>
 					</thead>
@@ -70,8 +73,9 @@
 								<td>${training.getTrainingEmpResult()}</td>
 								<td>${training.getEmployeeDTO().getEmpName()}</td>
 								<td>${training.getTrainingDTO().getTrainingName()}</td>
-								<td><button type="button" class="btn btn-warning"
-											value="${training.id}" id="sua-bo-phan" style="font-size: 14px;">Sửa</button></td>
+								<td><button type="button" class="btn btn-outline-warning"
+											value="${training.id}" id="sua-bo-phan" style="border-radius: 29%;">Sửa</button>
+								</td>
 							</tr>
 						</c:forEach> 
 					</tbody>

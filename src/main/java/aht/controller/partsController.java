@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import aht.entity.AhtParts;
-import aht.service.impl.AhtPartsServiceImpl;
+import aht.service.AhtPartsService;
 
 @Controller
 public class partsController {
 
 	@Autowired
-	private AhtPartsServiceImpl ahtPartsServiceImpl;
+	private AhtPartsService ahtPartsServiceImpl;
 	
 	@GetMapping("/trang-user/quan-ly-bo-phan")
 	public ModelAndView danhMucBoPhan() {

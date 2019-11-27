@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import aht.dto.ContractDTO;
 import aht.entity.AhtContract;
-import aht.service.impl.ContractServiceImpl;
+import aht.service.contractService;
 
 @Controller
 @RequestMapping("/api-contract")
 public class apiContractController {
 
 	@Autowired
-	private ContractServiceImpl contractServiceImpl;
+	private contractService contractServiceImpl;
 	
 	@PostMapping("/xoa-hop-dong")
 	@ResponseBody

@@ -10,18 +10,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import aht.dto.DepartmentDTO;
 import aht.entity.AhtParts;
-import aht.service.impl.AhtDepartmentServiceImpl;
-import aht.service.impl.AhtPartsServiceImpl;
+import aht.service.AhtDepartmentService;
+import aht.service.AhtPartsService;
 
 @Controller
 @RequestMapping("/api-department")
 public class apiDepartmentController {
 
 	  @Autowired 
-	  private AhtDepartmentServiceImpl ahtDepartmentServiceImpl;
+	  private AhtDepartmentService ahtDepartmentServiceImpl;
 	  
 	  @Autowired
-	  private AhtPartsServiceImpl ahtPartsServiceImpl;
+	  private AhtPartsService ahtPartsServiceImpl;
 	  
 	  @PostMapping("/xoa-phong-ban") 
 	  @ResponseBody 

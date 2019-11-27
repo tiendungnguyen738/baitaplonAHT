@@ -31,13 +31,6 @@ public class TrainingEmpServiceImpl implements TrainingEmpService{
 			
 			EmployeeDTO employeeDTO = modelMapper.map(ahtTraningEmp.getAhtEmployee(), EmployeeDTO.class);
 			TrainingDTO trainingDTO = modelMapper.map(ahtTraningEmp.getAhtTraining(), TrainingDTO.class);
-//			EmployeeDTO employeeDTO = new EmployeeDTO();
-//			employeeDTO.setId(ahtTraningEmp.getAhtEmployee().getId());
-//			employeeDTO.setEmpName(ahtTraningEmp.getAhtEmployee().getEmpName());
-//
-//			TrainingDTO trainingDTO = new TrainingDTO();
-//			trainingDTO.setId(ahtTraningEmp.getAhtTraining().getId());
-//			trainingDTO.setTrainingName(ahtTraningEmp.getAhtTraining().getTrainingName());
 
 			dto.setEmployeeDTO(employeeDTO);
 			dto.setTrainingDTO(trainingDTO);
@@ -45,6 +38,11 @@ public class TrainingEmpServiceImpl implements TrainingEmpService{
 			trainingEmpDTOs.add(dto);
 		}
 		return trainingEmpDTOs;
+	}
+
+	@Override
+	public void themKhoaDaoTao(AhtTraningEmp ahtTrainingEmp) {
+		trainingEmpRepository.save(ahtTrainingEmp);
 	}
 
 }

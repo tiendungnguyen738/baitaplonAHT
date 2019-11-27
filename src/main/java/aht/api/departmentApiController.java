@@ -1,6 +1,5 @@
 package aht.api;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,27 +8,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import aht.dto.DepartmentDTO;
-import aht.entity.AhtDepartment;
-import aht.service.impl.AhtDepartmentServiceImpl;
+import aht.service.AhtDepartmentService;
 
 @RestController
 @CrossOrigin(origins="http://localhost:4200",maxAge=3600)
 public class departmentApiController {
 
 	@Autowired
-	private AhtDepartmentServiceImpl ahtDepartmentServiceImpl;
+	private AhtDepartmentService ahtDepartmentServiceImpl;
 	
 	@GetMapping("/api/departments")
 	public List<DepartmentDTO> listDepartMent() {
-		List<AhtDepartment> departments = ahtDepartmentServiceImpl.dsPhongBan();
-		List<DepartmentDTO> departmentDTOs = new ArrayList<DepartmentDTO>();
-		
-		for (AhtDepartment ahtDepartment : departments) {
-			DepartmentDTO departmentDTO = new DepartmentDTO();
-			departmentDTO.setId(ahtDepartment.getId());
-			departmentDTO.setDepartmentName(ahtDepartment.getDepartmentName());
-			departmentDTOs.add(departmentDTO);
-		}
+		List<DepartmentDTO> departmentDTOs = ahtDepartmentServiceImpl.dsPhongBan();
 		return departmentDTOs;
 	}
 }

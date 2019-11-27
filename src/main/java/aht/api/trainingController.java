@@ -11,19 +11,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import aht.dto.TrainingDTO;
 import aht.entity.AhtTraining;
-import aht.service.impl.TrainingServiceImpl;
+import aht.service.TrainingService;
 
 @CrossOrigin(origins="http://localhost:4200",maxAge=3600)
 @RestController
 public class trainingController {
 
 	@Autowired
-	private TrainingServiceImpl trainingServiceImpl;
+	private TrainingService trainingServiceImpl;
 	
 	@GetMapping("/api/training")
 	public List<TrainingDTO> listTrainingDTO(){
@@ -39,6 +38,7 @@ public class trainingController {
 		TrainingDTO train = modelMapper.map(training, TrainingDTO.class);
 		return train;
 	}
+
 	@PostMapping("/api/training")
 	public TrainingDTO addTraining(@RequestBody TrainingDTO training) {
 		ModelMapper modelMapper = new ModelMapper();

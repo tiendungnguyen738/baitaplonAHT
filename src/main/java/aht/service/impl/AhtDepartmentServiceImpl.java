@@ -114,8 +114,18 @@ public class AhtDepartmentServiceImpl implements AhtDepartmentService{
 	}
 
 	@Override
-	public List<AhtDepartment> dsPhongBan() {
-		return ahtDepartMentRepository.findAll();
+	public List<DepartmentDTO> dsPhongBan() {
+		List<DepartmentDTO> departmentDTOs = new ArrayList<DepartmentDTO>();
+		List<AhtDepartment> ahtDepartments = ahtDepartMentRepository.findAll();
+		for (AhtDepartment ahtDepartment : ahtDepartments) {
+			
+			DepartmentDTO departmentDTO  = new DepartmentDTO();
+			departmentDTO.setId(ahtDepartment.getId());
+			departmentDTO.setDepartmentName(ahtDepartment.getDepartmentName());
+			
+			departmentDTOs.add(departmentDTO);
+		}
+		return departmentDTOs;
 	}
 
 }

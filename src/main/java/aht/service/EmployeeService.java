@@ -12,4 +12,5 @@ public interface EmployeeService {
 	void themNhanVien(AhtEmployee employee);
 	void suaNhanVien(AhtEmployee employee);
 	void xoaNhanVien(Long id);
+	List<AhtEmployee> getEmployeeByDepartmentId(Long departmentId);
 }

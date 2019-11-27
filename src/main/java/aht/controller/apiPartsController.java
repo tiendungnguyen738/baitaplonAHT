@@ -8,18 +8,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fasterxml.jackson.databind.util.BeanUtil;
-
 import aht.dto.PartDTO;
 import aht.entity.AhtParts;
-import aht.service.impl.AhtPartsServiceImpl;
+import aht.service.AhtPartsService;
 
 @Controller
 @RequestMapping("/api-parts")
 public class apiPartsController {
 
 	@Autowired
-	private AhtPartsServiceImpl ahtPartsServiceImpl;
+	private AhtPartsService ahtPartsServiceImpl;
 	
 	@PostMapping("/xoa-bo-phan")
 	@ResponseBody

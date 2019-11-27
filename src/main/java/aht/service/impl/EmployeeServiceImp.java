@@ -57,4 +57,9 @@ public class EmployeeServiceImp implements EmployeeService{
 		employeeRepository.delete(id);
 	}
 
+	@Override
+	public List<AhtEmployee> getEmployeeByDepartmentId(Long departmentId) {
+		return employeeRepository.getEmployeeByDepartmentId(departmentId);
+	}
+
 }

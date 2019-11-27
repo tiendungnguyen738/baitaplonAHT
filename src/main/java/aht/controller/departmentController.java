@@ -6,17 +6,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
-import aht.service.impl.AhtDepartmentServiceImpl;
-import aht.service.impl.AhtPartsServiceImpl;
+import aht.service.AhtDepartmentService;
+import aht.service.AhtPartsService;
 
 @Controller
 public class departmentController {
 
 	@Autowired
-	private AhtDepartmentServiceImpl ahtDepartmentServiceImpl;
+	private AhtDepartmentService ahtDepartmentServiceImpl;
 	
 	@Autowired
-	private AhtPartsServiceImpl ahtPartsServiceImpl;
+	private AhtPartsService ahtPartsServiceImpl;
 	
 	@GetMapping(path = {"/trang-user/quan-ly-pb","/trang-user/quan-ly-pb/{index}"})
 	public ModelAndView trangQuanLy(@PathVariable(required = false, name="index") Integer index) {

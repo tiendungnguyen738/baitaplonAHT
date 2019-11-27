@@ -17,18 +17,18 @@ import aht.dto.DepartmentDTO;
 import aht.dto.EmployeeDTO;
 import aht.entity.AhtDepartment;
 import aht.entity.AhtEmployee;
-import aht.service.impl.AhtDepartmentServiceImpl;
-import aht.service.impl.EmployeeServiceImp;
+import aht.service.AhtDepartmentService;
+import aht.service.EmployeeService;
 
 @CrossOrigin(origins="http://localhost:4200",maxAge=3600)
 @RestController
 public class employeeController {
 
 	@Autowired
-	private EmployeeServiceImp employeeServiceImpl;
+	private EmployeeService employeeServiceImpl;
 	
 	@Autowired
-	private AhtDepartmentServiceImpl ahtDepartmentServiceImpl;
+	private AhtDepartmentService ahtDepartmentServiceImpl;
 
 	@GetMapping("/api/employee")
 	public List<EmployeeDTO> listEmployeeDTO(){
@@ -81,4 +81,6 @@ public class employeeController {
 	public void deleteEmployee(@PathVariable Long id) {
 		employeeServiceImpl.xoaNhanVien(id);
 	}
+	
+	
 }
