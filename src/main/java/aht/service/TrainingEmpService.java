@@ -8,4 +8,5 @@ import aht.entity.AhtTraningEmp;
 public interface TrainingEmpService {
 	List<TrainingEmpDTO> dsTrainingEmp();
 	void themKhoaDaoTao(AhtTraningEmp ahtTrainingEmp);
+	AhtTraningEmp layMotKhoaDaoTao(Long id);
 }

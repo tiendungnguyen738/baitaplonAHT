@@ -18,16 +18,16 @@ public class AhtTraningEmp {
 	private Long id;
 	
 	@Column(name="training_emp_start_date")
-	private String TrainingEmpStartDate;
+	private String trainingEmpStartDate;
 	
 	@Column(name="training_emp_end_date")
-	private String TrainingEmpEndDate;
+	private String trainingEmpEndDate;
 	
 	@Column(name="training_emp_status")
-	private int TrainingEmpStatus;
+	private int trainingEmpStatus;
 	
 	@Column(name="training_emp_result")
-	private String TrainingEmpResult;
+	private String trainingEmpResult;
 
 	@OneToOne
 	@JoinColumn(name="emp_id",referencedColumnName = "id")
@@ -46,35 +46,35 @@ public class AhtTraningEmp {
 	}
 
 	public String getTrainingEmpStartDate() {
-		return TrainingEmpStartDate;
+		return trainingEmpStartDate;
 	}
 
 	public void setTrainingEmpStartDate(String trainingEmpStartDate) {
-		TrainingEmpStartDate = trainingEmpStartDate;
+		this.trainingEmpStartDate = trainingEmpStartDate;
 	}
 
 	public String getTrainingEmpEndDate() {
-		return TrainingEmpEndDate;
+		return trainingEmpEndDate;
 	}
 
 	public void setTrainingEmpEndDate(String trainingEmpEndDate) {
-		TrainingEmpEndDate = trainingEmpEndDate;
+		this.trainingEmpEndDate = trainingEmpEndDate;
 	}
 
 	public int getTrainingEmpStatus() {
-		return TrainingEmpStatus;
+		return trainingEmpStatus;
 	}
 
 	public void setTrainingEmpStatus(int trainingEmpStatus) {
-		TrainingEmpStatus = trainingEmpStatus;
+		this.trainingEmpStatus = trainingEmpStatus;
 	}
 
 	public String getTrainingEmpResult() {
-		return TrainingEmpResult;
+		return trainingEmpResult;
 	}
 
 	public void setTrainingEmpResult(String trainingEmpResult) {
-		TrainingEmpResult = trainingEmpResult;
+		this.trainingEmpResult = trainingEmpResult;
 	}
 
 	public AhtEmployee getAhtEmployee() {

@@ -3,10 +3,10 @@ package aht.dto;
 public class TrainingEmpDTO {
 
 	private Long id;
-	private String TrainingEmpStartDate;
-	private String TrainingEmpEndDate;
-	private int TrainingEmpStatus;
-	private String TrainingEmpResult;
+	private String trainingEmpStartDate;
+	private String trainingEmpEndDate;
+	private int trainingEmpStatus;
+	private String trainingEmpResult;
 	private EmployeeDTO employeeDTO;
 	private TrainingDTO trainingDTO;
 	public Long getId() {
@@ -16,28 +16,28 @@ public class TrainingEmpDTO {
 		this.id = id;
 	}
 	public String getTrainingEmpStartDate() {
-		return TrainingEmpStartDate;
+		return trainingEmpStartDate;
 	}
 	public void setTrainingEmpStartDate(String trainingEmpStartDate) {
-		TrainingEmpStartDate = trainingEmpStartDate;
+		this.trainingEmpStartDate = trainingEmpStartDate;
 	}
 	public String getTrainingEmpEndDate() {
-		return TrainingEmpEndDate;
+		return trainingEmpEndDate;
 	}
 	public void setTrainingEmpEndDate(String trainingEmpEndDate) {
-		TrainingEmpEndDate = trainingEmpEndDate;
+		this.trainingEmpEndDate = trainingEmpEndDate;
 	}
 	public int getTrainingEmpStatus() {
-		return TrainingEmpStatus;
+		return trainingEmpStatus;
 	}
 	public void setTrainingEmpStatus(int trainingEmpStatus) {
-		TrainingEmpStatus = trainingEmpStatus;
+		this.trainingEmpStatus = trainingEmpStatus;
 	}
 	public String getTrainingEmpResult() {
-		return TrainingEmpResult;
+		return trainingEmpResult;
 	}
 	public void setTrainingEmpResult(String trainingEmpResult) {
-		TrainingEmpResult = trainingEmpResult;
+		this.trainingEmpResult = trainingEmpResult;
 	}
 	public EmployeeDTO getEmployeeDTO() {
 		return employeeDTO;

@@ -11,7 +11,6 @@ $(document).ready(function() {
 				id:id
 			},
 			success:function(value){
-				console.log(value);
 				$("#danh-sach-nv tbody").html("");
 				for(i in value){
 					$("#danh-sach-nv tbody").append('<tr>'
@@ -49,12 +48,14 @@ $(document).ready(function() {
 		trainingEmpDTO["employeeDTO"]=employeeDTO;
 		trainingEmpDTO["trainingDTO"]=trainingDTO;
 		console.log(trainingEmpDTO);
+		console.log(JSON.stringify(trainingEmpDTO))
 		$.ajax({
 			url:"/aht/quan-ly-training-emp/them",
 			type:"post",
-			ContentType:"application/json",
+			ContentType:'application/json',
+			dataType:'json',
 			data:{
-				trainingEmpDTO:JSON.stringify(trainingEmpDTO)
+				trainingEmp:JSON.stringify(trainingEmpDTO)
 			},
 			success:function(value){
 				alert("thêm thành công");
@@ -62,5 +63,28 @@ $(document).ready(function() {
 		});
 	})
 	
+	
+	//chọn tất cả các trường:
+	$("body").on("click","#allBox",function(){
+		
+		if(true == $(this).prop("checked")){
+			$("#bang-bo-phan input[name='checkbox-id']").each(function(){
+				 $(this).prop("checked", true );
+			})
+		}
+		
+		if(false == $(this).prop("checked")){
+			$("#bang-bo-phan input[name='checkbox-id']").each(function(){
+				 $(this).prop("checked", false );
+			})
+		}
+		
+	})
+	
+	$('#khoadaotao > option').each(function() {
+		if($("#khoadaotao").attr("data-value") === $(this).val()){
+			$(this).attr("selected",true);
+		}
+	});
 	
 })

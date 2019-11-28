@@ -73,8 +73,11 @@
 								<td>${training.getTrainingEmpResult()}</td>
 								<td>${training.getEmployeeDTO().getEmpName()}</td>
 								<td>${training.getTrainingDTO().getTrainingName()}</td>
-								<td><button type="button" class="btn btn-outline-warning"
-											value="${training.id}" id="sua-bo-phan" style="border-radius: 29%;">Sửa</button>
+								<td>
+									<a href="<c:url value='/trang-user/quan-ly-training-emp/sua-thong-tin/${training.id}'/>">
+									<button type="button" class="btn btn-outline-warning" style="border-radius: 29%;"
+											 value="${training.id}" id="sua-bo-phan">Sửa</button>
+									</a>
 								</td>
 							</tr>
 						</c:forEach> 
@@ -102,6 +105,6 @@
 	<script src="<c:url value='/resources/admin/assets/vendor/charts/c3charts/d3-5.4.0.min.js'/>"></script>
 	<script src="<c:url value='/resources/admin/assets/vendor/charts/c3charts/C3chartjs.js'/>"></script>
 	<script src="<c:url value='/resources/admin/assets/libs/js/dashboard-ecommerce.js'/>"></script>
-	<script src="<c:url value='/resources/user/quan-ly-bo-phan.js'/>"></script>
+	<script src="<c:url value='/resources/user/quan-ly-khoa-dao-tao.js'/>"></script>
 </body>
 </html>

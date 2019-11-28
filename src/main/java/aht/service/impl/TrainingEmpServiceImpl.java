@@ -45,4 +45,9 @@ public class TrainingEmpServiceImpl implements TrainingEmpService{
 		trainingEmpRepository.save(ahtTrainingEmp);
 	}
 
+	@Override
+	public AhtTraningEmp layMotKhoaDaoTao(Long id) {
+		return trainingEmpRepository.findOne(id);
+	}
+
 }
