@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="aht.util.SecurityUtils"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -42,68 +42,57 @@
 
 		<div class="dashboard-wrapper" style="margin-top: 5%;">
 			<div class="col-md-12 col-sm-12">
-				<h2>Thông Tin Khóa Đào Tạo</h2>
-				<div class="col-md-6 col-sm-12" style="float: left;">
-					<form id="formKhoaDaoTao">
+				<h2>Cập Nhật Thông Tin Khóa Đào Tạo</h2>
+				<div class="col-md-6 col-sm-12" style="float: left;">	
+					<form:form action="cap-nhat" modelAttribute="trainingEmpDTO" method="post">
 						<div class="form-group">
-						    <label for="idNhanVien">Mã Nhân Viên</label>
-						    <input type="text" class="form-control" id="idNhanVien" name="id" value="${khoaDaoTao.getAhtEmployee().getId()}">
-						 </div>
-						<div class="form-group">
-						    <label for="tenNhanVien">Tên Nhân Viên</label>
-						    <input type="text" class="form-control" id="tenNhanVien" name="empName" value="${khoaDaoTao.getAhtEmployee().getEmpName()}">
-						 </div>
-						<div class="form-group">
-						    <label for="TrainingEmpStartDate">Ngày Bắt Đầu</label>
-						    <input type="date" class="form-control" id="TrainingEmpStartDate" name="trainingEmpStartDate" value="${khoaDaoTao.getTrainingEmpStartDate()}">
+						    <form:label path="id">Mã Khóa Đào Tạo</form:label>
+						    <form:input path="id" class="form-control" readonly="true"/>
 						 </div>
 						 <div class="form-group">
-						    <label for="TrainingEmpEndDate">Ngày Kết Thúc</label>
-						    <input type="date" class="form-control" id="TrainingEmpEndDate" name="trainingEmpEndDate" value="${khoaDaoTao.getTrainingEmpEndDate()}">
+						 	<form:label path="employeeDTO.id">Mã nhân viên</form:label>
+						 	<form:input path="employeeDTO.id" class="form-control" readonly="true"/>
 						 </div>
 						 <div class="form-group">
-						    <label for="TrainingEmpStatus">Trạng Thái</label>
-						    <input type="text" class="form-control" id="TrainingEmpStatus" name="trainingEmpStatus" value="${khoaDaoTao.getTrainingEmpStatus()}">
+						    <form:label path="employeeDTO.empName">Tên nhân viên</form:label>
+						    <form:input path="employeeDTO.empName" class="form-control" readonly="true"/>
 						 </div>
 						 <div class="form-group">
-						    <label for="TrainingEmpResult">Kết Quả</label>
-						    <input type="text" class="form-control" id="TrainingEmpResult" name="trainingEmpResult" value="${khoaDaoTao.getTrainingEmpResult()}">
+						 	<form:label path="employeeDTO.department.departmentName">Nhân viên thuộc phòng</form:label>
+						    <form:input path="employeeDTO.department.departmentName"
+						 		  readonly="true" style="width: 67%;height: 39px"/>
+						 </div>
+						 	<form:hidden path="employeeDTO.department.id"/>
+						 <div class="form-group">
+						    <form:label path="trainingDTO">Tên khóa đào tạo</form:label>
+						    <form:input path="trainingDTO.TrainingName" />
+						   	<form:input path="trainingDTO.id"/>
+						   	<form:select path="trainingDTO">
+						   		<form:options items="${trainingDTOs }" itemValue="id" itemLabel="TrainingName"/>
+						   	</form:select>
 						 </div>
 						 <div class="form-group">
-						    <label for="khoadaotao">Khóa Đào Tạo</label>
-						    <select id="khoadaotao" style="height: 46px; margin-left: 66px;" name="trainingDTO" data-value="${khoaDaoTao.getAhtTraining().getId()}">
-								<option>------------------------------------------------</option>
-								<c:forEach items="${ trainingDTOs}" var="trainingDTO">
-									<option value="${trainingDTO.getId() }">${trainingDTO.getTrainingName() }</option>
-								</c:forEach>
-							</select>
+						  	<form:label path="trainingEmpStartDate">Ngàu bắt đầu</form:label>  
+						  	<form:input path="trainingEmpStartDate" type="date" style="width: 66%;margin-left: 14%; height: 39px;"/>
 						 </div>
-						<div class="form-group">
-							<label for="employeeDTO">Nhân Viên Thuộc Phòng</label> 
-							<select id="employeeDTO" style="height: 43px;">
-								<option>------------------------------------------------</option>
-								<c:forEach items="${ departmentDTOs}" var="departmentDTO">
-									<option value="${departmentDTO.getId() }">${departmentDTO.getDepartmentName() }</option>
-								</c:forEach>
-							</select>
-						</div>
-					</form>
+						 <div class="form-group">
+						    <form:label path="trainingEmpEndDate">Ngày kết thúc</form:label>
+						    <form:input path="trainingEmpEndDate" type="date" style="width: 67%; height: 39px; margin-left: 13%;"/>
+						 </div>
+						 <div class="form-group">
+						    <form:label path="trainingEmpStatus">Trạng thái</form:label>
+						    <form:input path="trainingEmpStatus" style="width: 66%; height: 38px;margin-left: 19%;"/>
+						 </div>
+						 <div class="form-group">
+						    <form:label path="trainingEmpResult">Kết quả</form:label>
+						    <form:input path="trainingEmpResult" style="width: 67%; height: 37px;margin-left: 22%"/>
+						 </div>
+						 <input type="submit" value="Cập Nhật Thông Tin"/>
+					</form:form>
 					<a href="<c:url value='/trang-user/quan-ly-training-emp'/>"><button type="button" class="btn btn-primary">Quay Lại</button></a>
-					<button type="button" class="btn btn-info" id="update">Cập Nhật Thông Tin</button>
 				</div>
 				<div class="col-md-6 col-sm-12" style="float: right;margin-top: -2%;">
-					<h3 id="phong">Danh Sách Nhân Viên Phòng </h3>
-					<table class="table table-hover" id="danh-sach-nv">
-						<thead>
-							<tr>
-								<th>Mã Nhân Viên</th>
-								<th>Tên Nhân Viên</th>
-								<th>Thêm Vào Khóa Đào Tạo</th>
-							</tr>
-						</thead>
-						<tbody>
-						</tbody>
-					</table>
+					
 				</div>
 			</div>
 		</div>

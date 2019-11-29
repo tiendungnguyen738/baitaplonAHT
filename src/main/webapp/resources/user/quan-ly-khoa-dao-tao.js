@@ -87,4 +87,15 @@ $(document).ready(function() {
 		}
 	});
 	
+	$('#departmentDTO > option').each(function(){
+		if($("#departmentDTO").attr("data-value") === $(this).val()){
+			$(this).attr("selected",true);
+		}
+	});
+	
+	$('#trainingDTO > option').each(function(){
+		if($("#trainingDTO.id").attr("value") === $(this).val()){
+			$(this).attr("selected",true);
+		}
+	});
 })

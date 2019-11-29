@@ -50,4 +50,9 @@ public class TrainingEmpServiceImpl implements TrainingEmpService{
 		return trainingEmpRepository.findOne(id);
 	}
 
+	@Override
+	public void capNhatKhoaDaoTao(AhtTraningEmp ahtTraningEmp) {
+		trainingEmpRepository.save(ahtTraningEmp);
+	}
+
 }

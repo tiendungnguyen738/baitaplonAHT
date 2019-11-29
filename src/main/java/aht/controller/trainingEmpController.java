@@ -6,12 +6,11 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,10 +32,11 @@ import aht.service.AhtDepartmentService;
 import aht.service.EmployeeService;
 import aht.service.TrainingEmpService;
 import aht.service.TrainingService;
+import aht.util.Convert;
 
 @Controller
 public class trainingEmpController {
-
+	
 	@Autowired
 	private TrainingEmpService trainingEmpServiceImpl;
 	
@@ -59,7 +59,7 @@ public class trainingEmpController {
 	}
 	
 	//hiển thị trang thêm khóa đào tạo
-	@GetMapping("/trang-user/quan-ly-training-emp/them-khoa-dao-tao")
+	@GetMapping(value = "/trang-user/quan-ly-training-emp/them-khoa-dao-tao")
 	public ModelAndView trangThemKhoaDaoTao() {
 		ModelAndView mav = new ModelAndView("them-khoa-dao-tao");
 		List<TrainingDTO> trainingDTOs = trainingServiceImpl.getAllTrainning();
@@ -70,7 +70,7 @@ public class trainingEmpController {
 	}
 	
 	//hiển thị danh sách nhân viên trong 1 phòng. Cho trang thêm khóa đào tạo
-	@GetMapping("/trang-user/quan-ly-training-emp/danh-sach-nhan-vien")
+	@GetMapping(value = "/trang-user/quan-ly-training-emp/danh-sach-nhan-vien")
 	@ResponseBody
 	public List<EmployeeDTO> getEmployeeByDepartmentId(@RequestParam("id") Long departmentId) {
 		List<EmployeeDTO> employeeDTOs = new ArrayList<EmployeeDTO>();
@@ -100,15 +100,29 @@ public class trainingEmpController {
 	}
 	
 	//hiển thị trang sửa thông tin khóa đào tạo
-	@GetMapping("/trang-user/quan-ly-training-emp/sua-thong-tin/{id}")
+	@GetMapping(value = "/trang-user/quan-ly-training-emp/sua-thong-tin/{id}")
 	public ModelAndView trangSuaThongTin(@PathVariable Long id) {
 		ModelAndView mav = new ModelAndView("sua-khoa-dao-tao");
 		AhtTraningEmp ahtTraningEmp = trainingEmpServiceImpl.layMotKhoaDaoTao(id);
+		
+		TrainingEmpDTO trainingEmpDTO = Convert.fromTrainingEntityToTrainingDTO(ahtTraningEmp);
+		
 		List<TrainingDTO> trainingDTOs = trainingServiceImpl.getAllTrainning();
-		mav.addObject("khoaDaoTao", ahtTraningEmp);
+		
+		mav.addObject("trainingEmpDTO", trainingEmpDTO);
 		mav.addObject("trainingDTOs", trainingDTOs);
 		return mav;
 	}
-	
-	
+							 				
+	//cập nhật khóa đào tạo
+	@RequestMapping(value = "/trang-user/quan-ly-training-emp/sua-thong-tin/cap-nhat",method=RequestMethod.POST)
+	public String veTrangDanhSach(@ModelAttribute("trainingEmpDTO") TrainingEmpDTO trainingEmpDTO) {
+		AhtTraningEmp ahtTraningEmp = Convert.fromTrainingDTOToTrainingEntity(trainingEmpDTO);
+		System.out.println("id::::::::::::::::::"+ ahtTraningEmp.getId()+
+		" idNhanvien:::::::::::::::"+ahtTraningEmp.getAhtEmployee().getId()+
+		" idPhong::::::::::::::::::"+ahtTraningEmp.getAhtEmployee().getAhtDepartment().getId()+
+		" idKhoa:::::::::::::::::::"+ahtTraningEmp.getAhtTraining().getId());
+		//trainingEmpServiceImpl.capNhatKhoaDaoTao(ahtTraningEmp);
+		return "redirect:/trang-user/quan-ly-training-emp";
+	}
 }
