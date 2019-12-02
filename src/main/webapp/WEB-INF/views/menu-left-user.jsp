@@ -24,6 +24,9 @@
                                             <a class="nav-link" href="<c:url value='/trang-user/quan-ly-hop-dong'/>" >Danh Mục Hợp Đồng</a>
                                         </li>
                                         <li class="nav-item">
+                                            <a class="nav-link" href="<c:url value='/trang-user/quan-ly-hd-nv'/>">Danh Mục Hợp Đồng NV</a>
+                                        </li>
+                                        <li class="nav-item">
                                             <a class="nav-link" href="<c:url value='/trang-user/quan-ly-bo-phan'/>">Danh Mục Bộ Phận</a>
                                         </li>
                                         <li class="nav-item">
@@ -48,7 +51,7 @@
                                 <div id="submenu-6" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/blank-page.html">D/S Nhân Viên Công Ty</a>
+                                            <a class="nav-link" href="<c:url value='/trang-user/ds-nv-congty'/>">D/S Nhân Viên Công Ty</a>
                                         </li>
                                          <li class="nav-item">
                                             <a class="nav-link" href="pages/blank-page.html">D/S Nhân Viên Thử Việc</a>

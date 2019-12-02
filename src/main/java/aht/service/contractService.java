@@ -2,6 +2,7 @@ package aht.service;
 
 import java.util.List;
 
+import aht.dto.ContractDTO;
 import aht.entity.AhtContract;
 
 public interface contractService {
@@ -12,4 +13,5 @@ public interface contractService {
 	void themHopDong(AhtContract hopDong);
 	AhtContract layHopDong(Long id);
 	void suaHopDong(AhtContract hopDong);
+	List<ContractDTO> dsHopDongDTO();
 }

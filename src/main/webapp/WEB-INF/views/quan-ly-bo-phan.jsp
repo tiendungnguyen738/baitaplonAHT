@@ -46,7 +46,7 @@
 					<input type="text" class="form-control" id="ten-bo-phan" name="ten-bo-phan">
 					<br /> 
 					<br />
-					<button type="button" class="btn btn-dark" id="cancel">Cancel</button>
+					<!-- <button type="button" class="btn btn-dark" id="cancel">Cancel</button> -->
 					<button type="button" class="btn btn-primary cap-nhat-bo-phan" id="cap-nhat-bo-phan">Cập Nhật</button>
 					<button id="btn-them-bo-phan" type="button" class="btn btn-success" style="font-size: 12px;">Thêm</button>
 				</form>

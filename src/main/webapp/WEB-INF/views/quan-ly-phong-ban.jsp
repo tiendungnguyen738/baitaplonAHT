@@ -53,7 +53,7 @@
 					</select>
 					<br />
 					<br /> 
-					<button type="button" class="btn btn-dark" id="cancel">Cancel</button>
+				<!-- 	<button type="button" class="btn btn-dark" id="cancel">Cancel</button> -->
 					<button type="button" class="btn btn-primary cap-nhat-phong-ban" id="cap-nhat-phong-ban">Cập Nhật</button>
 					<button id="btn-them-bo-phan" type="button" class="btn btn-success" style="font-size: 12px;">Thêm</button>
 				</form>

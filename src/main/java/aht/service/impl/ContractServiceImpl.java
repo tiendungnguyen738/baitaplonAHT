@@ -9,9 +9,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import aht.dto.ContractDTO;
 import aht.entity.AhtContract;
 import aht.repository.ContractRepository;
 import aht.service.contractService;
+import aht.util.Convert;
 
 @Service
 public class ContractServiceImpl implements contractService{
@@ -70,6 +72,17 @@ public class ContractServiceImpl implements contractService{
 	@Override
 	public void suaHopDong(AhtContract hopDong) {
 		contractRepository.save(hopDong);
+	}
+
+	@Override
+	public List<ContractDTO> dsHopDongDTO() {
+		List<AhtContract> ahtContracts = contractRepository.findAll();
+		List<ContractDTO> contractDTOs = new ArrayList<ContractDTO>();
+		for (AhtContract ahtContract : ahtContracts) {
+			ContractDTO contractDTO = Convert.fromAhtContractToContractDTO(ahtContract);
+			contractDTOs.add(contractDTO);
+		}
+		return contractDTOs;
 	}
 
 }

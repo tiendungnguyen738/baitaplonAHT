@@ -118,11 +118,12 @@ public class trainingEmpController {
 	@RequestMapping(value = "/trang-user/quan-ly-training-emp/sua-thong-tin/cap-nhat",method=RequestMethod.POST)
 	public String veTrangDanhSach(@ModelAttribute("trainingEmpDTO") TrainingEmpDTO trainingEmpDTO) {
 		AhtTraningEmp ahtTraningEmp = Convert.fromTrainingDTOToTrainingEntity(trainingEmpDTO);
-		System.out.println("id::::::::::::::::::"+ ahtTraningEmp.getId()+
-		" idNhanvien:::::::::::::::"+ahtTraningEmp.getAhtEmployee().getId()+
-		" idPhong::::::::::::::::::"+ahtTraningEmp.getAhtEmployee().getAhtDepartment().getId()+
-		" idKhoa:::::::::::::::::::"+ahtTraningEmp.getAhtTraining().getId());
-		//trainingEmpServiceImpl.capNhatKhoaDaoTao(ahtTraningEmp);
+		trainingEmpServiceImpl.capNhatKhoaDaoTao(ahtTraningEmp);
 		return "redirect:/trang-user/quan-ly-training-emp";
+	}
+	
+	@RequestMapping(value="/quan-ly-training-emp/xoa",method = RequestMethod.GET)
+	public void xoaKhoaDaoTao(@RequestParam("id") Long id) {
+		trainingEmpServiceImpl.xoaKhoaDaoTao(id);
 	}
 }

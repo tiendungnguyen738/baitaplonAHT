@@ -10,4 +10,5 @@ public interface TrainingEmpService {
 	void themKhoaDaoTao(AhtTraningEmp ahtTrainingEmp);
 	AhtTraningEmp layMotKhoaDaoTao(Long id);
 	void capNhatKhoaDaoTao(AhtTraningEmp ahtTraningEmp);
+	void xoaKhoaDaoTao(Long id);
 }

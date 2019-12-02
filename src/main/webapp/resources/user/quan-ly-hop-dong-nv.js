@@ -31,29 +31,30 @@ $(document).ready(function() {
 	
 	$("body").on("click","#them-khoa-dao-tao",function(){
 		employeeId = $(this).attr("data-value")
-		trainingEmpDTO={};
+		contractEmpDTO={};
 		employeeDTO = {};
-		trainingDTO = {};
-		var formKhoaDaoTao = $("#formKhoaDaoTao").serializeArray();
+		contractDTO = {};
+		var formHopDongNV = $("#formHopDongNV").serializeArray();
 		
-		$.each(formKhoaDaoTao,function(i,field){
-			if(field.name=="trainingDTO"){
-				trainingDTO["id"]=field.value;
+		$.each(formHopDongNV,function(i,field){
+			if(field.name=="contractDTO"){
+				contractDTO["id"]=field.value;
 			}
 			else{
-				trainingEmpDTO[field.name]=field.value;
+				contractEmpDTO[field.name]=field.value;
 			}
 		})
 		employeeDTO["id"]=employeeId;
-		trainingEmpDTO["employeeDTO"]=employeeDTO;
-		trainingEmpDTO["trainingDTO"]=trainingDTO;
+		contractEmpDTO["employeeDTO"]=employeeDTO;
+		contractEmpDTO["contractDTO"]=contractDTO;
+		console.log(contractEmpDTO);
 		$.ajax({
-			url:"/aht/quan-ly-training-emp/them",
+			url:"/aht/quan-ly-hd-nv/them",
 			type:"post",
 			ContentType:'application/json',
 			dataType:'json',
 			data:{
-				trainingEmp:JSON.stringify(trainingEmpDTO)
+				contractEmpDTO:JSON.stringify(contractEmpDTO)
 			},
 			success:function(value){
 				alert("thêm thành công");
@@ -88,13 +89,12 @@ $(document).ready(function() {
 						id = $(this).val();
 						$(this).closest("tr").remove();
 						$.ajax({
-							url:"/aht/quan-ly-training-emp/xoa",
+							url:"/aht/quan-ly-hd-nv/xoa",
 							type:"get",
 							data:{
 								id:id
 							}
 						});
-						
 					}
 				})
 			}

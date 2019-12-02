@@ -42,12 +42,12 @@
 
 		<div class="dashboard-wrapper" style="margin-top: 5%;">
 			<div class="col-md-12 col-sm-12">
-				<h2>Cập Nhật Thông Tin Khóa Đào Tạo</h2>
-				<a href="<c:url value='/trang-user/quan-ly-training-emp'/>"><button type="button" class="btn btn-primary" style="margin-top: -6%; height: 38px; width: 27%;">Quay Lại</button></a>
+				<h2>Cập Nhật Thông Tin Hợp Đồng</h2>
+				<a href="<c:url value='/trang-user/quan-ly-hd-nv'/>"><button type="button" class="btn btn-primary" style="margin-top: -6%; height: 38px; width: 27%;">QUAY LẠI</button></a>
 				<div class="col-md-6 col-sm-12" style="float: left;margin-left: 22%;">	
-					<form:form action="cap-nhat" modelAttribute="trainingEmpDTO" method="post">
+					<form:form action="cap-nhat" modelAttribute="contractEmpDTO" method="post">
 						<div class="form-group">
-						    <form:label path="id">Mã Khóa Đào Tạo</form:label>
+						    <form:label path="id">Mã Hợp Đồng</form:label>
 						    <form:input path="id" class="form-control" readonly="true"/>
 						 </div>
 						 <div class="form-group">
@@ -65,29 +65,25 @@
 						 </div>
 						 	<form:hidden path="employeeDTO.department.id"/>
 						 <div class="form-group">
-						    <form:label path="trainingDTO.id">Tên khóa đào tạo</form:label>
-						   <form:select path="trainingDTO.id" style="margin-left: 9%; height: 41px; width: 67%;">
-						   		<form:options items="${trainingDTOs }" itemValue="id" itemLabel="TrainingName"/>
+						    <form:label path="contractDTO.id">Loại Hợp Đồng</form:label>
+						   <form:select path="contractDTO.id" style="margin-left: 12%; height: 41px; width: 67%;">
+						   		<form:options items="${contractDTOs }" itemValue="id" itemLabel="ContractType"/>
 						   	</form:select>
-						   	<form:hidden path="trainingDTO.id" id="test"/>
+						   	<form:hidden path="contractDTO.id" id="test"/>
 						 </div>
 						 <div class="form-group">
-						  	<form:label path="trainingEmpStartDate">Ngàu bắt đầu</form:label>  
-						  	<form:input path="trainingEmpStartDate" type="date" style="width: 66%;margin-left: 14%; height: 39px;"/>
+						  	<form:label path="ContractEmpStartDate">Ngàu bắt đầu</form:label>  
+						  	<form:input path="ContractEmpStartDate" type="date" style="width: 66%;margin-left: 14%; height: 39px;"/>
 						 </div>
 						 <div class="form-group">
-						    <form:label path="trainingEmpEndDate">Ngày kết thúc</form:label>
-						    <form:input path="trainingEmpEndDate" type="date" style="width: 67%; height: 39px; margin-left: 13%;"/>
+						    <form:label path="ContractEmpEndDate">Ngày kết thúc</form:label>
+						    <form:input path="ContractEmpEndDate" type="date" style="width: 67%; height: 39px; margin-left: 13%;"/>
 						 </div>
 						 <div class="form-group">
-						    <form:label path="trainingEmpStatus">Trạng thái</form:label>
+						    <form:label path="ContractEmpStatus">Trạng thái</form:label>
 						    <%-- <form:input path="trainingEmpStatus" style="width: 66%; height: 38px;margin-left: 19%;"/> --%>
-						    <form:radiobutton path="trainingEmpStatus" value="1" style="margin-left: 18%;"/>Đang Hoạt Động
-						    <form:radiobutton path="trainingEmpStatus" value="0" style="margin-left: 18%;"/>Không Hoạt Động
-						 </div>
-						 <div class="form-group">
-						    <form:label path="trainingEmpResult">Kết quả</form:label>
-						    <form:input path="trainingEmpResult" style="width: 67%; height: 37px;margin-left: 22%"/>
+						    <form:radiobutton path="ContractEmpStatus" value="1" style="margin-left: 18%;"/>Còn Hợp Đồng
+						    <form:radiobutton path="ContractEmpStatus" value="0" style="margin-left: 18%;"/>Hết Hợp Đồng
 						 </div>
 						 <input type="submit" value="Cập Nhật Thông Tin" style="width: 100%;" class="btn btn-success"/>
 					</form:form>
@@ -129,6 +125,6 @@
 		src="<c:url value='/resources/admin/assets/vendor/charts/c3charts/C3chartjs.js'/>"></script>
 	<script
 		src="<c:url value='/resources/admin/assets/libs/js/dashboard-ecommerce.js'/>"></script>
-	<script src="<c:url value='/resources/user/quan-ly-khoa-dao-tao.js'/>"></script>
+	<script src="<c:url value='/resources/user/quan-ly-hop-dong-nv.js'/>"></script>
 </body>
 </html>

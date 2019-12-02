@@ -69,7 +69,12 @@
 								<td>${training.id}</td>
 								<td>${training.getTrainingEmpStartDate()}</td>
 								<td>${training.getTrainingEmpEndDate()}</td>
-								<td>${training.getTrainingEmpStatus()}</td>
+								<c:if test="${training.getTrainingEmpStatus() == 1}">
+									<td>Đang Hoạt Động</td>	
+								</c:if>
+								<c:if test="${training.getTrainingEmpStatus() == 0}">
+									<td>Không Hoạt Động</td>
+								</c:if>
 								<td>${training.getTrainingEmpResult()}</td>
 								<td>${training.getEmployeeDTO().getEmpName()}</td>
 								<td>${training.getTrainingDTO().getTrainingName()}</td>

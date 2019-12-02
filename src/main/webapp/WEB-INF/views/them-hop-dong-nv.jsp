@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ page import="aht.util.SecurityUtils"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -42,58 +42,56 @@
 
 		<div class="dashboard-wrapper" style="margin-top: 5%;">
 			<div class="col-md-12 col-sm-12">
-				<h2>Cập Nhật Thông Tin Khóa Đào Tạo</h2>
-				<a href="<c:url value='/trang-user/quan-ly-training-emp'/>"><button type="button" class="btn btn-primary" style="margin-top: -6%; height: 38px; width: 27%;">Quay Lại</button></a>
-				<div class="col-md-6 col-sm-12" style="float: left;margin-left: 22%;">	
-					<form:form action="cap-nhat" modelAttribute="trainingEmpDTO" method="post">
+				<h2>Thông Tin Hợp Đồng</h2>
+				<div class="col-md-6 col-sm-12" style="float: left;">
+					<form id="formHopDongNV">
 						<div class="form-group">
-						    <form:label path="id">Mã Khóa Đào Tạo</form:label>
-						    <form:input path="id" class="form-control" readonly="true"/>
+						    <label for="contractEmpStartDate">Ngày Bắt Đầu</label>
+						    <input type="date" class="form-control" id="contractEmpStartDate" name="contractEmpStartDate">
 						 </div>
 						 <div class="form-group">
-						 	<form:label path="employeeDTO.id">Mã nhân viên</form:label>
-						 	<form:input path="employeeDTO.id" class="form-control" readonly="true"/>
+						    <label for="contractEmpEndDate">Ngày Kết Thúc</label>
+						    <input type="date" class="form-control" id="contractEmpEndDate" name="contractEmpEndDate">
+						 </div>
+						 <div class="radio">
+						    <label for="contractEmpStatus">Trạng Thái</label>
+						    <input type="radio" name="contractEmpStatus" value="1" style="margin-left: 3%;" checked>Còn Hợp Đồng
+						    <input type="radio" name="contractEmpStatus" value="0" style="margin-left: 10%;">Hết Hợp Đồng
 						 </div>
 						 <div class="form-group">
-						    <form:label path="employeeDTO.empName">Tên nhân viên</form:label>
-						    <form:input path="employeeDTO.empName" class="form-control" readonly="true"/>
+						    <label for="inputPassword">Danh Sách Hợp Đồng</label>
+						    <select id="inputPassword" style="height: 46px; margin-left: 66px;" name="contractDTO">
+								<option>------------------------------------------------</option>
+								<c:forEach items="${ contractDTOs}" var="contractDTO">
+									<option value="${contractDTO.getId() }">${contractDTO.getContractType() }</option>
+								</c:forEach>
+							</select>
 						 </div>
-						 <div class="form-group">
-						 	<form:label path="employeeDTO.department.departmentName">Nhân viên thuộc phòng</form:label>
-						    <form:input path="employeeDTO.department.departmentName"
-						 		  readonly="true" style="width: 67%;height: 39px"/>
-						 </div>
-						 	<form:hidden path="employeeDTO.department.id"/>
-						 <div class="form-group">
-						    <form:label path="trainingDTO.id">Tên khóa đào tạo</form:label>
-						   <form:select path="trainingDTO.id" style="margin-left: 9%; height: 41px; width: 67%;">
-						   		<form:options items="${trainingDTOs }" itemValue="id" itemLabel="TrainingName"/>
-						   	</form:select>
-						   	<form:hidden path="trainingDTO.id" id="test"/>
-						 </div>
-						 <div class="form-group">
-						  	<form:label path="trainingEmpStartDate">Ngàu bắt đầu</form:label>  
-						  	<form:input path="trainingEmpStartDate" type="date" style="width: 66%;margin-left: 14%; height: 39px;"/>
-						 </div>
-						 <div class="form-group">
-						    <form:label path="trainingEmpEndDate">Ngày kết thúc</form:label>
-						    <form:input path="trainingEmpEndDate" type="date" style="width: 67%; height: 39px; margin-left: 13%;"/>
-						 </div>
-						 <div class="form-group">
-						    <form:label path="trainingEmpStatus">Trạng thái</form:label>
-						    <%-- <form:input path="trainingEmpStatus" style="width: 66%; height: 38px;margin-left: 19%;"/> --%>
-						    <form:radiobutton path="trainingEmpStatus" value="1" style="margin-left: 18%;"/>Đang Hoạt Động
-						    <form:radiobutton path="trainingEmpStatus" value="0" style="margin-left: 18%;"/>Không Hoạt Động
-						 </div>
-						 <div class="form-group">
-						    <form:label path="trainingEmpResult">Kết quả</form:label>
-						    <form:input path="trainingEmpResult" style="width: 67%; height: 37px;margin-left: 22%"/>
-						 </div>
-						 <input type="submit" value="Cập Nhật Thông Tin" style="width: 100%;" class="btn btn-success"/>
-					</form:form>
+						<div class="form-group">
+							<label for="inputPassword">Nhân Viên Thuộc Phòng</label> 
+							<select id="employeeDTO" style="height: 43px;margin-left: 10%;">
+								<option>------------------------------------------------</option>
+								<c:forEach items="${ departmentDTOs}" var="departmentDTO">
+									<option value="${departmentDTO.getId() }">${departmentDTO.getDepartmentName() }</option>
+								</c:forEach>
+							</select>
+						</div>
+					</form>
+					<a href="<c:url value='/trang-user/quan-ly-hd-nv'/>"><button type="button" class="btn btn-primary">QUAY LẠI</button></a>
 				</div>
 				<div class="col-md-6 col-sm-12" style="float: right;margin-top: -2%;">
-					
+					<h3 id="phong">Danh Sách Nhân Viên Phòng </h3>
+					<table class="table table-hover" id="danh-sach-nv">
+						<thead>
+							<tr>
+								<th>Mã Nhân Viên</th>
+								<th>Tên Nhân Viên</th>
+								<th>Thêm Vào Hợp Đồng</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
@@ -129,6 +127,6 @@
 		src="<c:url value='/resources/admin/assets/vendor/charts/c3charts/C3chartjs.js'/>"></script>
 	<script
 		src="<c:url value='/resources/admin/assets/libs/js/dashboard-ecommerce.js'/>"></script>
-	<script src="<c:url value='/resources/user/quan-ly-khoa-dao-tao.js'/>"></script>
+	<script src="<c:url value='/resources/user/quan-ly-hop-dong-nv.js'/>"></script>
 </body>
 </html>

@@ -53,9 +53,10 @@
 						    <label for="TrainingEmpEndDate">Ngày Kết Thúc</label>
 						    <input type="date" class="form-control" id="TrainingEmpEndDate" name="trainingEmpEndDate">
 						 </div>
-						 <div class="form-group">
+						 <div class="radio">
 						    <label for="TrainingEmpStatus">Trạng Thái</label>
-						    <input type="text" class="form-control" id="TrainingEmpStatus" name="trainingEmpStatus">
+						    <input type="radio" name="trainingEmpStatus" value="1" style="margin-left: 3%;" checked>Đang Hoạt Động
+						    <input type="radio" name="trainingEmpStatus" value="0" style="margin-left: 10%;">Không Hoạt Động
 						 </div>
 						 <div class="form-group">
 						    <label for="TrainingEmpResult">Kết Quả</label>
