@@ -72,7 +72,7 @@
 									<td>Còn Hợp Đồng</td>	
 								</c:if>
 								<c:if test="${contractEmpDTO.getContractEmpStatus() == 0}">
-									<td>Hết Hoạt Động</td>
+									<td>Hết Hợp Đồng</td>
 								</c:if>
 								<td>${contractEmpDTO.getContractDTO().getContractType()}</td>
 								<td>${contractEmpDTO.getEmployeeDTO().getEmpName()}</td>

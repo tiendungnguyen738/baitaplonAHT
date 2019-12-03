@@ -197,6 +197,21 @@
 		    <version>2.3.2</version>
 		</dependency>
 		
+		<!-- xuất file excel -->
+		<dependency>
+		    <groupId>org.apache.poi</groupId>
+		    <artifactId>poi-ooxml</artifactId>
+		    <version>3.17</version>
+		</dependency>
+		
+		<!-- xuất file pdf -->
+		<dependency>
+		    <groupId>com.lowagie</groupId>
+		    <artifactId>itext</artifactId>
+		    <version>2.1.7</version>
+		</dependency>
+		
+		
     </dependencies>
 
     <build>

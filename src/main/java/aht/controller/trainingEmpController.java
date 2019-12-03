@@ -26,7 +26,6 @@ import aht.dto.EmployeeDTO;
 import aht.dto.TrainingDTO;
 import aht.dto.TrainingEmpDTO;
 import aht.entity.AhtEmployee;
-import aht.entity.AhtTraining;
 import aht.entity.AhtTraningEmp;
 import aht.service.AhtDepartmentService;
 import aht.service.EmployeeService;

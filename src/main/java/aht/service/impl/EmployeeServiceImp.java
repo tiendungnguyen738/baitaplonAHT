@@ -3,15 +3,14 @@ package aht.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import aht.dto.DepartmentDTO;
 import aht.dto.EmployeeDTO;
 import aht.entity.AhtEmployee;
 import aht.repository.EmployeeRepository;
 import aht.service.EmployeeService;
+import aht.util.Convert;
 
 @Service
 public class EmployeeServiceImp implements EmployeeService{
@@ -27,19 +26,13 @@ public class EmployeeServiceImp implements EmployeeService{
 	@Override
 	public List<EmployeeDTO> layDanhSachNhanVien() {
 		List<AhtEmployee> listEm = employeeRepository.findAll();
-		List<EmployeeDTO> listEmpDTO = new ArrayList<EmployeeDTO>();
-		ModelMapper modelMapper = new ModelMapper();
+		List<EmployeeDTO> employeeDTOs = new ArrayList<EmployeeDTO>();
+		
 		for (AhtEmployee ahtEmployee : listEm) {
-				
-				DepartmentDTO departDTO = new DepartmentDTO();
-				departDTO.setId(ahtEmployee.getAhtDepartment().getId());
-				departDTO.setDepartmentName(ahtEmployee.getAhtDepartment().getDepartmentName());
-				
-				EmployeeDTO em = modelMapper.map(ahtEmployee, EmployeeDTO.class);
-				em.setDepartment(departDTO);
-				listEmpDTO.add(em);
+			EmployeeDTO employeeDTO = Convert.fromAhtEmployeeToEmployeeDTO(ahtEmployee);
+			employeeDTOs.add(employeeDTO);
 		}
-		return listEmpDTO;
+		return employeeDTOs;
 	}
 
 	@Override

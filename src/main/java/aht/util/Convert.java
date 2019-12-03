@@ -101,4 +101,16 @@ public class Convert {
 		
 		return ahtContractEmp;
 	}
+	
+	public static EmployeeDTO fromAhtEmployeeToEmployeeDTO(AhtEmployee ahtEmployee){
+		ModelMapper modelMapper = new ModelMapper();
+		
+		DepartmentDTO departDTO = new DepartmentDTO();
+		departDTO.setId(ahtEmployee.getAhtDepartment().getId());
+		departDTO.setDepartmentName(ahtEmployee.getAhtDepartment().getDepartmentName());
+				
+		EmployeeDTO em = modelMapper.map(ahtEmployee, EmployeeDTO.class);
+		em.setDepartment(departDTO);
+		return em;
+	}
 }

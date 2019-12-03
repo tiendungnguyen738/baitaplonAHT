@@ -43,8 +43,43 @@
 			<div class="col-md-12 col-sm-12 form-group" style="float:left;margin-top:5%">
 				<h3>DANH SÁCH NHÂN VIÊN TRONG CÔNG TY</h3>
 				<table>
-					<th></th>
+					<thead>
+						<tr>
+							<td>Mã Nhân Viên</td>
+							<td>Tên Nhân Viên</td>
+							<td>Ngày Sinh</td>
+							<td>Giới Tính</td>
+							<td>Số Bảo Hiểm</td>
+							<td>Địa Chỉ</td>
+							<td>Điện Thoại</td>
+							<td>Loại Nhân Viên</td>
+							<td>Phòng</td>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${employeeList }" var="employee">
+							<tr>
+								<td>${employee.getId() }</td>
+								<td>${employee.getEmpName() }</td>
+								<td>${employee.getEmpDob() }</td>
+									<c:if test="${employee.getEmpSex() == 1 }">
+										<td>Nam</td>
+									</c:if>
+									<c:if test="${employee.getEmpSex() == 0 }">
+										<td>Nữ</td>
+									</c:if>
+								<td>${employee.getEmpNumberInsurance() }</td>
+								<td>${employee.getEmpAddress() }</td>
+								<td>${employee.getEmpPhone() }</td>
+								<td>${employee.getEmpType() }</td>
+								<td>${employee.getDepartment().getDepartmentName() }</td>
+							</tr>
+						</c:forEach>
+					</tbody>
 				</table>
+				
+			<a href="<c:url value='/trang-user/ds-nv-congty/?type=xlsx'/>">DownLoad Excel</a>
+			<a href="<c:url value='/trang-user/ds-nv-congty/?type=pdf'/>">DownLoad PDF</a>
 			</div>	
 		</div>
 	</div>
