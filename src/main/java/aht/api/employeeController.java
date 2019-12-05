@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import aht.dto.DepartmentDTO;
 import aht.dto.EmployeeDTO;
 import aht.entity.AhtDepartment;
 import aht.entity.AhtEmployee;
 import aht.service.AhtDepartmentService;
 import aht.service.EmployeeService;
+import aht.util.Convert;
 
 @CrossOrigin(origins="http://localhost:4200",maxAge=3600)
 @RestController
@@ -39,31 +39,17 @@ public class employeeController {
 	@GetMapping("/api/employee/{id}")
 	public EmployeeDTO getEmployee(@PathVariable Long id) {
 		AhtEmployee em = employeeServiceImpl.layMotNhanVien(id);
-		ModelMapper mapper = new ModelMapper();
-		
-		DepartmentDTO depart = new DepartmentDTO();
-		depart.setId(em.getAhtDepartment().getId());;
-		depart.setDepartmentName(em.getAhtDepartment().getDepartmentName());
-		
-		EmployeeDTO empl = mapper.map(em, EmployeeDTO.class);
-		empl.setDepartment(depart);
-		
-		return empl;
+		EmployeeDTO employeeDTO = Convert.fromAhtEmployeeToEmployeeDTO(em);
+		return employeeDTO;
 	}
 	@PostMapping("/api/employee")
 	public EmployeeDTO addEmployee(@RequestBody EmployeeDTO employee) {
-		ModelMapper modelMapper = new ModelMapper();
-		AhtDepartment depart = ahtDepartmentServiceImpl.layPhongBan(employee.getDepartment().getId());
-		AhtEmployee emp = modelMapper.map(employee, AhtEmployee.class);
+		AhtDepartment depart = Convert.fromDepartmentDTOToAhtDepartment(employee.getDepartment());
+		AhtEmployee emp = Convert.fromEmployeeDTOToAhtEmployee(employee);
 		emp.setAhtDepartment(depart);
-		
 		employeeServiceImpl.themNhanVien(emp);
 		
-		EmployeeDTO eDTO = modelMapper.map(emp, EmployeeDTO.class);
-		DepartmentDTO pb  = new DepartmentDTO();
-		pb.setId(depart.getId());
-		pb.setDepartmentName(depart.getDepartmentName());
-		eDTO.setDepartment(pb);
+		EmployeeDTO eDTO = Convert.fromAhtEmployeeToEmployeeDTO(emp);
 		return eDTO;
 	}
 	

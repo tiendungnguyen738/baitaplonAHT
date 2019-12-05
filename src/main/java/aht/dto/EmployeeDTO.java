@@ -2,9 +2,6 @@ package aht.dto;
 
 import java.util.Set;
 
-import aht.entity.AhtContractEmp;
-import aht.entity.AhtTraningEmp;
-
 public class EmployeeDTO {
 
 	private Long id;
@@ -16,8 +13,8 @@ public class EmployeeDTO {
 	private String empPhone;
 	private int empType;
 	private DepartmentDTO department;
-	private Set<AhtTraningEmp> ahtTraningEmp;
-	private Set<AhtContractEmp> ahtContractEmp;
+	private Set<TrainingEmpDTO> ahtTraningEmp;
+	private Set<ContractEmpDTO> ahtContractEmp;
 	
 	public String getEmpNumberInsurance() {
 		return empNumberInsurance;
@@ -49,16 +46,16 @@ public class EmployeeDTO {
 	public void setDepartment(DepartmentDTO ahtDepartment) {
 		this.department = ahtDepartment;
 	}
-	public Set<AhtTraningEmp> getAhtTraningEmp() {
+	public Set<TrainingEmpDTO> getAhtTraningEmp() {
 		return ahtTraningEmp;
 	}
-	public void setAhtTraningEmp(Set<AhtTraningEmp> ahtTraningEmp) {
+	public void setAhtTraningEmp(Set<TrainingEmpDTO> ahtTraningEmp) {
 		this.ahtTraningEmp = ahtTraningEmp;
 	}
-	public Set<AhtContractEmp> getAhtContractEmp() {
+	public Set<ContractEmpDTO> getAhtContractEmp() {
 		return ahtContractEmp;
 	}
-	public void setAhtContractEmp(Set<AhtContractEmp> ahtContractEmp) {
+	public void setAhtContractEmp(Set<ContractEmpDTO> ahtContractEmp) {
 		this.ahtContractEmp = ahtContractEmp;
 	}
 	public Long getId() {

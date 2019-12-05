@@ -68,11 +68,17 @@ public class contractEmpController {
 	@PostMapping(value= "/quan-ly-hd-nv/them")
 	@ResponseBody
 	public String themHopDong1(@RequestParam String contractEmpDTO) throws JsonParseException, JsonMappingException, IOException {
+		
 		ContractEmpDTO contractEmpDTO1 = new ObjectMapper().readValue(contractEmpDTO,ContractEmpDTO.class);
-		ModelMapper modelMapper = new ModelMapper();
-		AhtContractEmp ahtContractEmp = modelMapper.map(contractEmpDTO1, AhtContractEmp.class);
-		ahtContractEmp.setAhtEmployee(employeeService.layMotNhanVien(contractEmpDTO1.getEmployeeDTO().getId()));
-		ahtContractEmp.setAhtContract(contractService.layHopDong(contractEmpDTO1.getContractDTO().getId()));
+		
+//		ModelMapper modelMapper = new ModelMapper();
+//		
+//		AhtContractEmp ahtContractEmp = modelMapper.map(contractEmpDTO1, AhtContractEmp.class);
+//		ahtContractEmp.setAhtEmployee(employeeService.layMotNhanVien(contractEmpDTO1.getEmployeeDTO().getId()));
+//		ahtContractEmp.setAhtContract(contractService.layHopDong(contractEmpDTO1.getContractDTO().getId()));
+		
+		AhtContractEmp ahtContractEmp = Convert.fromContractEmpDTOToAhtContractEmp(contractEmpDTO1);
+		
 		contractEmpService.themHopDongNV(ahtContractEmp);
 		return "true";
 	}

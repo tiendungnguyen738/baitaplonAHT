@@ -1,6 +1,5 @@
 package aht.controller;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import aht.dto.ContractDTO;
 import aht.entity.AhtContract;
 import aht.service.contractService;
+import aht.util.Convert;
 
 @Controller
 @RequestMapping("/api-contract")
@@ -42,8 +42,7 @@ public class apiContractController {
 	@ResponseBody
 	public ContractDTO layTTHopDong(@RequestParam Long id) {
 		AhtContract hopDong = contractServiceImpl.layHopDong(id);
-		ContractDTO contractDto = new ContractDTO();
-		BeanUtils.copyProperties(hopDong, contractDto);
+		ContractDTO contractDto = Convert.fromAhtContractToContractDTO(hopDong);
 		return contractDto;
 	}
 	

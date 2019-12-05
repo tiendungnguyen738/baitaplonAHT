@@ -43,7 +43,7 @@
 			<div class="col-md-12 col-sm-12 form-group" style="float:left;margin-top:5%">
 			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
-                            <h5 class="card-header">DANH SÁCH NHÂN VIÊN TRONG CÔNG TY</h5>
+                            <h5 class="card-header">DANH SÁCH NHÂN VIÊN HẾT HỢP ĐỒNG</h5>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered first">
@@ -104,22 +104,22 @@
                         </div>
                     </div>
                     <ul class="pagination" style="float: right;	">
-	                    <li class="page-item"><a class="page-link" href="<c:url value='/trang-user/ds-nv-congty/${trangTruoc}'/>">Previous</a></li>
+	                    <li class="page-item"><a class="page-link" href="<c:url value='/trang-user/ds-nhan-vien-het-hop-dong/${trangTruoc}'/>">Previous</a></li>
 	                    <c:forEach var="soTrang" begin="1" end="${soTrang}">               	
 							  <li class="page-item">
-							  	<a class="page-link" href="<c:url value='/trang-user/ds-nv-congty/${soTrang}'/>" style="padding-top: 29%;" >${soTrang }</a>
+							  	<a class="page-link" href="<c:url value='/trang-user/ds-nhan-vien-het-hop-dong/${soTrang}'/>" style="padding-top: 29%;" >${soTrang }</a>
 							  </li>
 	                    </c:forEach>
-	                     <li class="page-item"><a class="page-link" href="<c:url value='/trang-user/ds-nv-congty/${trangSau}'/>">Next</a></li>
+	                     <li class="page-item"><a class="page-link" href="<c:url value='/trang-user/ds-nhan-vien-het-hop-dong/${trangSau}'/>">Next</a></li>
                     </ul>
             <div style="margin-left: 2%;">
-				<a href="<c:url value='/trang-user/ds-nv-congty/?type=xlsx'/>">
+				<a href="<c:url value='/trang-user/ds-nhan-vien-het-hop-dong/?type=xlsx'/>">
 					<button type="button" class="btn btn-outline-success" style="width: 15%;">
 						<img alt="" src="<c:url value='/resources/admin/assets/images/icondownload.png'/>" style="width: 21%;">
 						DownLoad Excel
 					</button>
 				</a>
-				<a href="<c:url value='/trang-user/ds-nv-congty/?type=pdf'/>">
+				<a href="<c:url value='/trang-user/ds-nhan-vien-het-hop-dong/?type=pdf'/>">
 					<button type="button" class="btn btn-outline-secondary" style="width: 15%;">
 						<img alt="" src="<c:url value='/resources/admin/assets/images/icondownload2.ico'/>" style="width: 21%;">
 						DownLoad PDF

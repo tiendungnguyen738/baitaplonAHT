@@ -53,11 +53,13 @@
 						<tr>
 							<th><input type="checkbox" class="AllCheckBox" id="allBox"></th>
 							<th>Mã</th>
+							<th>Tên Nhân Viên</th>
+							<th>Loại Hợp Đồng</th>
 							<th>Ngày Bắt Đầu Hợp Đồng</th>
 							<th>Ngày Kết Thúc Hợp Đồng</th>
 							<th>Trạng Thái</th>
-							<th>Loại Hợp Đồng</th>
-							<th>Tên Nhân Viên</th>
+							
+							
 							<th>Setting</th>
 						</tr>
 					</thead>
@@ -66,6 +68,8 @@
 							<tr>
 								<td><input type="checkbox" value="${contractEmpDTO.id}" id="checkbox-id" name="checkbox-id"/></td>
 								<td>${contractEmpDTO.id}</td>
+								<td>${contractEmpDTO.getEmployeeDTO().getEmpName()}</td>
+								<td>${contractEmpDTO.getContractDTO().getContractType()}</td>
 								<td>${contractEmpDTO.getContractEmpStartDate()}</td>
 								<td>${contractEmpDTO.getContractEmpEndDate()}</td>
 								<c:if test="${contractEmpDTO.getContractEmpStatus() == 1}">
@@ -73,9 +77,7 @@
 								</c:if>
 								<c:if test="${contractEmpDTO.getContractEmpStatus() == 0}">
 									<td>Hết Hợp Đồng</td>
-								</c:if>
-								<td>${contractEmpDTO.getContractDTO().getContractType()}</td>
-								<td>${contractEmpDTO.getEmployeeDTO().getEmpName()}</td>
+								</c:if>	
 								<td>
 									<a href="<c:url value='/trang-user/quan-ly-hd-nv/sua-thong-tin/${contractEmpDTO.id}'/>">
 									<button type="button" class="btn btn-outline-warning" style="border-radius: 29%;"

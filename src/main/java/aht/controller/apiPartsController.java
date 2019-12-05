@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import aht.dto.PartDTO;
 import aht.entity.AhtParts;
 import aht.service.AhtPartsService;
+import aht.util.Convert;
 
 @Controller
 @RequestMapping("/api-parts")
@@ -41,11 +42,8 @@ public class apiPartsController {
 	@ResponseBody
 	public PartDTO layTTBoPhan(@RequestParam Long id) {
 		AhtParts part = ahtPartsServiceImpl.layTTBoPhan(id);
-		
-		PartDTO partDto = new PartDTO();
-		partDto.setId(part.getId());
-		partDto.setPartsName(part.getPartsName());
-		
+
+		PartDTO partDto = Convert.fromAhtPartToPartDTO(part);
 		return partDto;
 	}
 	

@@ -1,81 +1,95 @@
 package aht.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import aht.dto.ContractDTO;
 import aht.dto.ContractEmpDTO;
 import aht.dto.DepartmentDTO;
 import aht.dto.EmployeeDTO;
+import aht.dto.PartDTO;
 import aht.dto.TrainingDTO;
 import aht.dto.TrainingEmpDTO;
 import aht.entity.AhtContract;
 import aht.entity.AhtContractEmp;
 import aht.entity.AhtDepartment;
 import aht.entity.AhtEmployee;
+import aht.entity.AhtParts;
 import aht.entity.AhtTraining;
 import aht.entity.AhtTraningEmp;
 
 @Component
 public class Convert {
+	
+	public static PartDTO fromAhtPartToPartDTO(AhtParts ahtParts) {
+		ModelMapper modelMapper = new ModelMapper();
+		PartDTO partDTO = modelMapper.map(ahtParts, PartDTO.class);
+		return partDTO;
+	}
 
 	public static TrainingEmpDTO fromTrainingEntityToTrainingDTO(AhtTraningEmp ahtTraningEmp) {
 		ModelMapper modelMapper = new ModelMapper();
 		TrainingEmpDTO trainingEmpDTO = modelMapper.map(ahtTraningEmp, TrainingEmpDTO.class);
 		
-		EmployeeDTO employeeDTO = new EmployeeDTO();
-		employeeDTO.setEmpName(ahtTraningEmp.getAhtEmployee().getEmpName());
-		employeeDTO.setId(ahtTraningEmp.getAhtEmployee().getId());
-		DepartmentDTO departmentDTO = modelMapper.map(ahtTraningEmp.getAhtEmployee().getAhtDepartment(), DepartmentDTO.class);
-		employeeDTO.setDepartment(departmentDTO);
-		
+		EmployeeDTO employeeDTO = fromAhtEmployeeToEmployeeDTO(ahtTraningEmp.getAhtEmployee());
 		trainingEmpDTO.setEmployeeDTO(employeeDTO);
-
-		TrainingDTO trainingDTO = new TrainingDTO();
-		trainingDTO.setTrainingName(ahtTraningEmp.getAhtTraining().getTrainingName());
-		trainingDTO.setId(ahtTraningEmp.getAhtTraining().getId());
-		
-		trainingEmpDTO.setTrainingDTO(trainingDTO);
 		return trainingEmpDTO;
+	}
+	
+	public static List<EmployeeDTO> fromAhtEmployeeListToEmployeeDTOList(Page<AhtEmployee> ahtEmployees){
+		List<EmployeeDTO> employeeDTOs = new ArrayList<EmployeeDTO>();
+		for (AhtEmployee employee : ahtEmployees) {
+			EmployeeDTO employeeDTO = Convert.fromAhtEmployeeToEmployeeDTO(employee);
+			employeeDTOs.add(employeeDTO);
+		}
+		return employeeDTOs;
+	}
+	
+	public static AhtDepartment fromDepartmentDTOToAhtDepartment(DepartmentDTO departmentDTO) {
+		ModelMapper modelMapper = new ModelMapper();
+		AhtDepartment ahtDepartment = modelMapper.map(departmentDTO, AhtDepartment.class);
+		return ahtDepartment;
+	}
+	
+	public static DepartmentDTO fromAhtDepartmentToDepartmentDTO(AhtDepartment ahtDepartment) {
+		ModelMapper modelMapper = new ModelMapper();
+		DepartmentDTO departmentDTO = modelMapper.map(ahtDepartment, DepartmentDTO.class);
+		return departmentDTO;
 	}
 	
 	public static AhtTraningEmp fromTrainingDTOToTrainingEntity(TrainingEmpDTO trainingEmpDTO) {
 		ModelMapper modelMapper = new ModelMapper();
 		AhtTraningEmp ahtTraningEmp = modelMapper.map(trainingEmpDTO, AhtTraningEmp.class);
-		
-		AhtDepartment ahtDepartment = new AhtDepartment();
-		ahtDepartment.setId(trainingEmpDTO.getEmployeeDTO().getDepartment().getId());
-		
-		AhtEmployee ahtEmployee = new AhtEmployee();
-		ahtEmployee.setAhtDepartment(ahtDepartment);
-		ahtEmployee.setId(trainingEmpDTO.getEmployeeDTO().getId());
+	
+		AhtEmployee ahtEmployee = fromEmployeeDTOToAhtEmployee(trainingEmpDTO.getEmployeeDTO()); 
 		ahtTraningEmp.setAhtEmployee(ahtEmployee);
 		
-		AhtTraining ahtTraining = new AhtTraining();
-		ahtTraining.setId(trainingEmpDTO.getTrainingDTO().getId());
+		AhtTraining ahtTraining = fromTrainingDTOToAhtTraining(trainingEmpDTO.getTrainingDTO());
 		ahtTraningEmp.setAhtTraining(ahtTraining);
 		
 		return ahtTraningEmp;
+	}
+	
+	public static AhtTraining fromTrainingDTOToAhtTraining(TrainingDTO trainingDTO) {
+		ModelMapper modelMapper = new ModelMapper();
+		AhtTraining ahtTraining = modelMapper.map(trainingDTO, AhtTraining.class);
+		return ahtTraining;
 	}
 	
 	public static ContractEmpDTO fromAhtContractEmpToContractEmpDTO(AhtContractEmp ahtContractEmp) {
 		ModelMapper modelMapper = new ModelMapper();
 		ContractEmpDTO contractEmpDTO = modelMapper.map(ahtContractEmp, ContractEmpDTO.class);
 		
-		DepartmentDTO departmentDTO = new DepartmentDTO();
-		departmentDTO.setId(ahtContractEmp.getAhtEmployee().getAhtDepartment().getId());
-		departmentDTO.setDepartmentName(ahtContractEmp.getAhtEmployee().getAhtDepartment().getDepartmentName());
-		
-		EmployeeDTO employeeDTO = new EmployeeDTO();
-		employeeDTO.setId(ahtContractEmp.getAhtEmployee().getId());
-		employeeDTO.setEmpName(ahtContractEmp.getAhtEmployee().getEmpName());
-		employeeDTO.setDepartment(departmentDTO);
+		EmployeeDTO employeeDTO = fromAhtEmployeeToEmployeeDTO(ahtContractEmp.getAhtEmployee());
 		contractEmpDTO.setEmployeeDTO(employeeDTO);
 		
-		ContractDTO contractDTO = new ContractDTO();
-		contractDTO.setId(ahtContractEmp.getAhtContract().getId());
-		contractDTO.setContractCode(ahtContractEmp.getAhtContract().getContractCode());
-		contractDTO.setContractType(ahtContractEmp.getAhtContract().getContractType());
+		ContractDTO contractDTO  =fromAhtContractToContractDTO(ahtContractEmp.getAhtContract());
 		contractEmpDTO.setContractDTO(contractDTO);
 		
 		return contractEmpDTO;
@@ -91,26 +105,65 @@ public class Convert {
 		ModelMapper modelMapper = new ModelMapper();
 		AhtContractEmp ahtContractEmp = modelMapper.map(contractEmpDTO, AhtContractEmp.class);
 		
-		AhtEmployee ahtEmployee = new AhtEmployee();
-		ahtEmployee.setId(contractEmpDTO.getEmployeeDTO().getId());
-		ahtContractEmp.setAhtEmployee(ahtEmployee);
+		AhtEmployee ahtEmployee = fromEmployeeDTOToAhtEmployee(contractEmpDTO.getEmployeeDTO());
 		
-		AhtContract ahtContract = new AhtContract();
-		ahtContract.setId(contractEmpDTO.getContractDTO().getId());
+		AhtContract ahtContract = fromContractDTOToAhtContract(contractEmpDTO.getContractDTO());
+		
 		ahtContractEmp.setAhtContract(ahtContract);
-		
+		ahtContractEmp.setAhtEmployee(ahtEmployee);
 		return ahtContractEmp;
 	}
 	
 	public static EmployeeDTO fromAhtEmployeeToEmployeeDTO(AhtEmployee ahtEmployee){
 		ModelMapper modelMapper = new ModelMapper();
-		
-		DepartmentDTO departDTO = new DepartmentDTO();
-		departDTO.setId(ahtEmployee.getAhtDepartment().getId());
-		departDTO.setDepartmentName(ahtEmployee.getAhtDepartment().getDepartmentName());
 				
 		EmployeeDTO em = modelMapper.map(ahtEmployee, EmployeeDTO.class);
-		em.setDepartment(departDTO);
 		return em;
 	}
+	
+	public static AhtEmployee fromEmployeeDTOToAhtEmployee(EmployeeDTO employeeDTO) {
+		ModelMapper modelMapper = new ModelMapper();
+		AhtEmployee ahtEmployee = modelMapper.map(employeeDTO, AhtEmployee.class);
+		return ahtEmployee;
+	}
+	
+	public static AhtContract fromContractDTOToAhtContract(ContractDTO contractDTO) {
+		ModelMapper modelMapper = new ModelMapper();
+		AhtContract ahtContract = modelMapper.map(contractDTO, AhtContract.class);
+		return ahtContract;
+	}
+	
+		//lấy index trang Previous
+		public static int layIndexPrevious(Integer index,int soTrang) {
+			if(index == null || index == 1) {
+				return 1;
+			}else if(index!=1 && index !=null) {
+					return (index -1);
+			}
+			return 1;
+		}
+	
+		//lấy index trang Next
+		public static int layIndexNext(Integer index,int soTrang) {
+			if(index == null || index == 1) {
+				return 2;
+			}else if(index!=1 && index !=null) {
+				if(index == soTrang) {
+					return index;
+				}
+				return (index+1);
+			}
+			return 1;
+		}
+		
+		@SuppressWarnings("unused")
+		public static Pageable layPageable(Integer index) {
+			Pageable pageable = new PageRequest(0,5);
+			if(index == null) {
+				return new PageRequest(0,5);
+			}else if(index != null) {
+				return new PageRequest(index-1,5);
+			}
+			return pageable;
+		}
 }

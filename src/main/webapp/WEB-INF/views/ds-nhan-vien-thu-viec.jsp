@@ -43,7 +43,7 @@
 			<div class="col-md-12 col-sm-12 form-group" style="float:left;margin-top:5%">
 			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
-                            <h5 class="card-header">DANH SÁCH NHÂN VIÊN TRONG CÔNG TY</h5>
+                            <h5 class="card-header">DANH SÁCH NHÂN VIÊN THỬ VIỆC</h5>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered first">
@@ -56,7 +56,6 @@
 												<td>Số Bảo Hiểm</td>
 												<td>Địa Chỉ</td>
 												<td>Điện Thoại</td>
-												<td>Loại Nhân Viên</td>
 												<td>Phòng</td>
 											</tr>
                                         </thead>
@@ -75,12 +74,6 @@
 													<td>${employee.getEmpNumberInsurance() }</td>
 													<td>${employee.getEmpAddress() }</td>
 													<td>${employee.getEmpPhone() }</td>
-													<c:if test="${employee.getEmpType() == 1 }">
-														<td>Nhân Viên Chính Thức</td>
-													</c:if>
-													<c:if test="${employee.getEmpType() == 0 }">
-														<td>Nhân Viên Thử Việc</td>
-													</c:if>
 													<td>${employee.getDepartment().getDepartmentName() }</td>
 												</tr>
 											</c:forEach>
@@ -94,7 +87,6 @@
 												<td>Số Bảo Hiểm</td>
 												<td>Địa Chỉ</td>
 												<td>Điện Thoại</td>
-												<td>Loại Nhân Viên</td>
 												<td>Phòng</td>
 											</tr>
                                         </tfoot>
@@ -104,22 +96,22 @@
                         </div>
                     </div>
                     <ul class="pagination" style="float: right;	">
-	                    <li class="page-item"><a class="page-link" href="<c:url value='/trang-user/ds-nv-congty/${trangTruoc}'/>">Previous</a></li>
+	                    <li class="page-item"><a class="page-link" href="<c:url value='/trang-user/ds-nv-thuviec/${trangTruoc}'/>">Previous</a></li>
 	                    <c:forEach var="soTrang" begin="1" end="${soTrang}">               	
 							  <li class="page-item">
-							  	<a class="page-link" href="<c:url value='/trang-user/ds-nv-congty/${soTrang}'/>" style="padding-top: 29%;" >${soTrang }</a>
+							  	<a class="page-link" href="<c:url value='/trang-user/ds-nv-thuviec/${soTrang}'/>" style="padding-top: 29%;" >${soTrang }</a>
 							  </li>
 	                    </c:forEach>
-	                     <li class="page-item"><a class="page-link" href="<c:url value='/trang-user/ds-nv-congty/${trangSau}'/>">Next</a></li>
+	                     <li class="page-item"><a class="page-link" href="<c:url value='/trang-user/ds-nv-thuviec/${trangSau}'/>">Next</a></li>
                     </ul>
             <div style="margin-left: 2%;">
-				<a href="<c:url value='/trang-user/ds-nv-congty/?type=xlsx'/>">
+				<a href="<c:url value='/trang-user/ds-nv-thuviec/?type=xlsx'/>">
 					<button type="button" class="btn btn-outline-success" style="width: 15%;">
 						<img alt="" src="<c:url value='/resources/admin/assets/images/icondownload.png'/>" style="width: 21%;">
 						DownLoad Excel
 					</button>
 				</a>
-				<a href="<c:url value='/trang-user/ds-nv-congty/?type=pdf'/>">
+				<a href="<c:url value='/trang-user/ds-nv-thuviec/?type=pdf'/>">
 					<button type="button" class="btn btn-outline-secondary" style="width: 15%;">
 						<img alt="" src="<c:url value='/resources/admin/assets/images/icondownload2.ico'/>" style="width: 21%;">
 						DownLoad PDF

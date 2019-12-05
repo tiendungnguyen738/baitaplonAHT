@@ -2,14 +2,12 @@ package aht.dto;
 
 import java.util.Set;
 
-import aht.entity.AhtDepartment;
-
 public class PartDTO {
 
 	private Long id;
 	private String partsName;
-	private Set<AhtDepartment> ahtDepartment;
-	public PartDTO(Long id, String partsName, Set<AhtDepartment> ahtDepartment) {
+	private Set<DepartmentDTO> ahtDepartment;
+	public PartDTO(Long id, String partsName, Set<DepartmentDTO> ahtDepartment) {
 		super();
 		this.id = id;
 		this.partsName = partsName;
@@ -30,10 +28,10 @@ public class PartDTO {
 	public void setPartsName(String partsName) {
 		this.partsName = partsName;
 	}
-	public Set<AhtDepartment> getAhtDepartment() {
+	public Set<DepartmentDTO> getAhtDepartment() {
 		return ahtDepartment;
 	}
-	public void setAhtDepartment(Set<AhtDepartment> ahtDepartment) {
+	public void setAhtDepartment(Set<DepartmentDTO> ahtDepartment) {
 		this.ahtDepartment = ahtDepartment;
 	}
 }

@@ -2,8 +2,6 @@ package aht.dto;
 
 import java.util.Set;
 
-import aht.entity.AhtTraningEmp;
-
 public class TrainingDTO {
 	private Long id;
 	private String TrainingName;
@@ -11,7 +9,7 @@ public class TrainingDTO {
 	private String TrainingStartDate;
 	private String TrainingEndDate;
 	private int TrainingStatus;
-	private Set<AhtTraningEmp> ahtTraningEmp;
+	private Set<TrainingEmpDTO> ahtTraningEmp;
 	public Long getId() {
 		return id;
 	}
@@ -48,10 +46,10 @@ public class TrainingDTO {
 	public void setTrainingStatus(int trainingStatus) {
 		TrainingStatus = trainingStatus;
 	}
-	public Set<AhtTraningEmp> getAhtTraningEmp() {
+	public Set<TrainingEmpDTO> getAhtTraningEmp() {
 		return ahtTraningEmp;
 	}
-	public void setAhtTraningEmp(Set<AhtTraningEmp> ahtTraningEmp) {
+	public void setAhtTraningEmp(Set<TrainingEmpDTO> ahtTraningEmp) {
 		this.ahtTraningEmp = ahtTraningEmp;
 	}
 }

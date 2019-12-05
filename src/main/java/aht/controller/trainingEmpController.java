@@ -72,8 +72,9 @@ public class trainingEmpController {
 	@GetMapping(value = "/trang-user/quan-ly-training-emp/danh-sach-nhan-vien")
 	@ResponseBody
 	public List<EmployeeDTO> getEmployeeByDepartmentId(@RequestParam("id") Long departmentId) {
-		List<EmployeeDTO> employeeDTOs = new ArrayList<EmployeeDTO>();
+		
 		List<AhtEmployee> ahtEmployees = employeeService.getEmployeeByDepartmentId((long) departmentId);
+		List<EmployeeDTO> employeeDTOs = new ArrayList<EmployeeDTO>();
 		
 		for (AhtEmployee ahtEmployee : ahtEmployees) {
 			EmployeeDTO dto = new EmployeeDTO();

@@ -64,7 +64,7 @@ $(document).ready(function(){
 			},
 			success:function(value){
 				$("#ten-phong-ban").val(value.departmentName);
-				$("#dsBoPhan").val(value.ahtParts.id);
+				$("#dsBoPhan").val(value.partDTO.id);
 				$("#cap-nhat-phong-ban").val(value.id);
 			}
 		})
@@ -78,6 +78,17 @@ $(document).ready(function(){
 			phongBanJson[field.name] = field.value;
 		})
 		phongBanJson["id"] = $("#cap-nhat-phong-ban").val();
+	
+		var tenPhongBan = $("#ten-phong-ban").val();
+		var tenBoPhan = $("#dsBoPhan option:selected").text();
+		
+		$("#bang-bo-phan tr").each(function(){
+			if($(this).find("#checkbox-id").val() == $("#cap-nhat-phong-ban").val()){
+				$(this).closest("tr").find("#name-pb").text(tenPhongBan);
+				$(this).closest("tr").find("#name-bp").text(tenBoPhan);
+			}
+		})
+		
 		$.ajax({
 			url:"/aht/api-department/cap-nhat-phong-ban",
 			type:"POST",

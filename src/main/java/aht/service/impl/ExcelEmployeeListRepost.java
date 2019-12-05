@@ -49,7 +49,11 @@ public class ExcelEmployeeListRepost extends AbstractXlsxView{
 			row.createCell(4).setCellValue(employee.getEmpNumberInsurance());
 			row.createCell(5).setCellValue(employee.getEmpAddress());
 			row.createCell(6).setCellValue(employee.getEmpPhone());
-			row.createCell(7).setCellValue(employee.getEmpType());
+			if(employee.getEmpType() == 1) {
+				row.createCell(7).setCellValue("Nhân Viên Chính Thức");
+			}else if(employee.getEmpSex() == 0) {
+				row.createCell(7).setCellValue("Nhân Viên Thử Việc");
+			}
 			row.createCell(8).setCellValue(employee.getDepartment().getDepartmentName());
 		}
 	}

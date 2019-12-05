@@ -19,6 +19,7 @@ import aht.entity.AhtDepartment;
 import aht.entity.AhtParts;
 import aht.repository.AhtDepartMentRepository;
 import aht.service.AhtDepartmentService;
+import aht.util.Convert;
 
 @Service
 public class AhtDepartmentServiceImpl implements AhtDepartmentService{
@@ -75,15 +76,10 @@ public class AhtDepartmentServiceImpl implements AhtDepartmentService{
 	@Override
 	public DepartmentDTO layPhongBanvsChuyenDoi(Long id) {
 			AhtDepartment phong =  ahtDepartMentRepository.findOne(id);
-			DepartmentDTO phongBan = new DepartmentDTO();
 			
-			PartDTO boPhan = new PartDTO();
-			boPhan.setId(phong.getAhtParts().getId());
-			boPhan.setPartsName(phong.getAhtParts().getPartsName());
-			
-			phongBan.setDepartmentName(phong.getDepartmentName());
-			phongBan.setId(phong.getId());
-			phongBan.setPartDTO(boPhan);
+			DepartmentDTO phongBan = Convert.fromAhtDepartmentToDepartmentDTO(phong);
+			PartDTO partDTO = Convert.fromAhtPartToPartDTO(phong.getAhtParts());
+			phongBan.setPartDTO(partDTO);
 			return phongBan;
 	}
 
@@ -119,10 +115,7 @@ public class AhtDepartmentServiceImpl implements AhtDepartmentService{
 		List<AhtDepartment> ahtDepartments = ahtDepartMentRepository.findAll();
 		for (AhtDepartment ahtDepartment : ahtDepartments) {
 			
-			DepartmentDTO departmentDTO  = new DepartmentDTO();
-			departmentDTO.setId(ahtDepartment.getId());
-			departmentDTO.setDepartmentName(ahtDepartment.getDepartmentName());
-			
+			DepartmentDTO departmentDTO  = Convert.fromAhtDepartmentToDepartmentDTO(ahtDepartment);
 			departmentDTOs.add(departmentDTO);
 		}
 		return departmentDTOs;

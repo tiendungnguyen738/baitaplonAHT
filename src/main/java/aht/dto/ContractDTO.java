@@ -2,13 +2,11 @@ package aht.dto;
 
 import java.util.Set;
 
-import aht.entity.AhtContractEmp;
-
 public class ContractDTO {
 	private Long id;
 	private String ContractCode;
 	private int ContractType;
-	private Set<AhtContractEmp> ahtContractEmp;
+	private Set<ContractEmpDTO> ahtContractEmp;
 	public Long getId() {
 		return id;
 	}
@@ -27,10 +25,10 @@ public class ContractDTO {
 	public void setContractType(int contractType) {
 		ContractType = contractType;
 	}
-	public Set<AhtContractEmp> getAhtContractEmp() {
+	public Set<ContractEmpDTO> getAhtContractEmp() {
 		return ahtContractEmp;
 	}
-	public void setAhtContractEmp(Set<AhtContractEmp> ahtContractEmp) {
+	public void setAhtContractEmp(Set<ContractEmpDTO> ahtContractEmp) {
 		this.ahtContractEmp = ahtContractEmp;
 	}
 	public ContractDTO() {

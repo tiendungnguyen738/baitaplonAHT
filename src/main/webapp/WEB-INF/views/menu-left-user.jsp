@@ -54,10 +54,10 @@
                                             <a class="nav-link" href="<c:url value='/trang-user/ds-nv-congty'/>">D/S Nhân Viên Công Ty</a>
                                         </li>
                                          <li class="nav-item">
-                                            <a class="nav-link" href="pages/blank-page.html">D/S Nhân Viên Thử Việc</a>
+                                            <a class="nav-link" href="<c:url value='/trang-user/ds-nv-thuviec'/>">D/S Nhân Viên Thử Việc</a>
                                         </li>
                                          <li class="nav-item">
-                                            <a class="nav-link" href="pages/blank-page.html">D/S Nhân Viên Hết Hạn Hợp Đồng</a>
+                                            <a class="nav-link" href="/trang-user/ds-nhan-vien-het-hop-dong">D/S Nhân Viên Hết Hạn Hợp Đồng</a>
                                         </li>
                                          <li class="nav-item">
                                             <a class="nav-link" href="pages/blank-page.html">D/S Nhân Viên Và Các Khóa Đào Tạo</a>

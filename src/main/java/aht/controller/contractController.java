@@ -6,13 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
-import aht.service.impl.ContractServiceImpl;
+import aht.service.contractService;
 
 @Controller
 public class contractController {
 
 	@Autowired
-	private ContractServiceImpl contractServiceImpl;
+	private contractService contractServiceImpl;
 	
 	@GetMapping(path = {"/trang-user/quan-ly-hop-dong","/trang-user/quan-ly-hop-dong/{index}"})
 	public ModelAndView trangQuanLy(@PathVariable(required = false, name="index") Integer index) {
