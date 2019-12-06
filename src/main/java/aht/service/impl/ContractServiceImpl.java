@@ -3,7 +3,6 @@ package aht.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,7 +13,6 @@ import aht.dto.ContractDTO;
 import aht.entity.AhtContract;
 import aht.repository.ContractRepository;
 import aht.service.contractService;
-import aht.util.Convert;
 
 @Service
 public class ContractServiceImpl implements contractService{
@@ -77,7 +75,6 @@ public class ContractServiceImpl implements contractService{
 
 	@Override
 	public List<ContractDTO> dsHopDongDTO() {
-		ModelMapper modelMapper = new ModelMapper();
 		List<AhtContract> ahtContracts = contractRepository.findAll();
 		List<ContractDTO> contractDTOs = new ArrayList<ContractDTO>();
 		

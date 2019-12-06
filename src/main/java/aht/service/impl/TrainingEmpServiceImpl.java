@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import aht.dto.EmployeeDTO;
@@ -13,6 +15,7 @@ import aht.dto.TrainingEmpDTO;
 import aht.entity.AhtTraningEmp;
 import aht.repository.TrainingEmpRepository;
 import aht.service.TrainingEmpService;
+import aht.util.Convert;
 
 @Service
 public class TrainingEmpServiceImpl implements TrainingEmpService{
@@ -58,6 +61,18 @@ public class TrainingEmpServiceImpl implements TrainingEmpService{
 	@Override
 	public void xoaKhoaDaoTao(Long id) {
 		trainingEmpRepository.delete(id);
+	}
+
+	@Override
+	public List<TrainingEmpDTO> dsNVKhoaDaoTaoPhanTrang(Pageable pageable) {
+		Page<AhtTraningEmp> page = trainingEmpRepository.findAll(pageable);
+		List<TrainingEmpDTO> empDTOs = new ArrayList<TrainingEmpDTO>();
+		
+		for (AhtTraningEmp ahtTraningEmp : page) {
+			TrainingEmpDTO dto = Convert.fromTrainingEntityToTrainingDTO(ahtTraningEmp);
+			empDTOs.add(dto);
+		}
+		return empDTOs;
 	}
 
 }

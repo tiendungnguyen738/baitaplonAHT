@@ -13,9 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import aht.dto.EmployeeDTO;
+import aht.dto.TrainingEmpDTO;
 import aht.service.EmployeeService;
+import aht.service.TrainingEmpService;
 import aht.service.impl.ExcelEmployeeListRepost;
+import aht.service.impl.ExcelTrainingEmployeeListRepost;
 import aht.service.impl.PdfEmployeeListRepost;
+import aht.service.impl.PdfTrainingEmployeeListRepost;
 import aht.util.Convert;
 
 @Controller
@@ -23,6 +27,9 @@ public class baoCaoNhanSuController {
 
 	@Autowired
 	private EmployeeService employeeService;
+	
+	@Autowired
+	private TrainingEmpService trainingEmpService;
 	
 	//hiển thị danh sách nhân viên trong công ty
 	@RequestMapping(value = {"/trang-user/ds-nv-congty/{index}","/trang-user/ds-nv-congty"})
@@ -85,7 +92,7 @@ public class baoCaoNhanSuController {
 	
 	//danh sách nhân viên hết hợp đồng
 	@RequestMapping(value = {"/trang-user/ds-nhan-vien-het-hop-dong","/trang-user/ds-nhan-vien-het-hop-dong/{index}"})
-	public ModelAndView dsNhanVienHetHopDong(@PathVariable(required = false,name="index") int index,
+	public ModelAndView dsNhanVienHetHopDong(@PathVariable(required = false,name="index") Integer index,
 			HttpServletRequest request,HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("ds-nhan-vien-het-hop-dong");
 		String typeRequest = request.getParameter("type");
@@ -108,6 +115,34 @@ public class baoCaoNhanSuController {
 		}
 		
 		mav.addObject("soTrang", soTrang);
+		return mav;
+	}
+	
+	//danh sách nhân viên và khóa đào tạo
+	@RequestMapping(value = {"/trang-user/ds-nhan-vien-khoa-dao-tao","/trang-user/ds-nhan-vien-khoa-dao-tao/{index}"})
+	public ModelAndView dsNhanVienKhoaDaoTao(@PathVariable(required = false,name="index") Integer index,
+					HttpServletRequest request,HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView("ds-nhan-vien-khoa-dao-tao");
+		String typeRequest = request.getParameter("type");
+		
+		List<TrainingEmpDTO> empDTOs = trainingEmpService.dsTrainingEmp();
+		List<TrainingEmpDTO> empDTOs2 = new ArrayList<TrainingEmpDTO>();
+		
+		int soTrang = (empDTOs.size()/5 +1);
+		
+		mav.addObject("trangSau", Convert.layIndexNext(index, soTrang));
+		mav.addObject("trangTruoc", Convert.layIndexPrevious(index, soTrang));
+		
+		
+		empDTOs2 = trainingEmpService.dsNVKhoaDaoTaoPhanTrang(Convert.layPageable(index));
+		mav.addObject("employeeList", empDTOs2);
+		
+		if(typeRequest != null && typeRequest.equals("xlsx")) {
+			return new ModelAndView(new ExcelTrainingEmployeeListRepost(),"employeeList",empDTOs2);
+		}else if(typeRequest != null && typeRequest.equals("pdf")) {
+			return new ModelAndView(new PdfTrainingEmployeeListRepost(),"employeeList",empDTOs2);
+		}
+		
 		return mav;
 	}
 }

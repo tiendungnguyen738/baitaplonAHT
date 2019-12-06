@@ -63,12 +63,7 @@ public class EmployeeServiceImp implements EmployeeService{
 	public List<EmployeeDTO> dsNVPhanTrang(Pageable pageable) {
 		
 		Page<AhtEmployee> page = employeeRepository.findAll(pageable);
-		List<EmployeeDTO> employeeDTOs2 = new ArrayList<EmployeeDTO>();
-		
-		for (AhtEmployee employee : page) {
-			EmployeeDTO employeeDTO = Convert.fromAhtEmployeeToEmployeeDTO(employee);
-			employeeDTOs2.add(employeeDTO);
-		}
+		List<EmployeeDTO> employeeDTOs2 = Convert.fromAhtEmployeeListToEmployeeDTOList(page);
 		return employeeDTOs2;
 	}
 
@@ -76,19 +71,15 @@ public class EmployeeServiceImp implements EmployeeService{
 	public List<EmployeeDTO> dsNVThuViec(Pageable pageable) {
 	
 		Page<AhtEmployee> ahtEmployees = employeeRepository.findAllByEmpType(0,pageable);
-		List<EmployeeDTO> employeeDTOs = new ArrayList<EmployeeDTO>();
-		for (AhtEmployee employee : ahtEmployees) {
-			EmployeeDTO employeeDTO = Convert.fromAhtEmployeeToEmployeeDTO(employee);
-			employeeDTOs.add(employeeDTO);
-		}
+		List<EmployeeDTO> employeeDTOs = Convert.fromAhtEmployeeListToEmployeeDTOList(ahtEmployees);
 		return employeeDTOs;
 	}
 
 	@Override
 	public List<EmployeeDTO> dsNVHetHopDong(Pageable pageable) {
-	//	Page<AhtEmployee> ahtEmployees = employeeRepository.findAllByContractEmpStatus(0, pageable);
-	//	List<EmployeeDTO> employeeDTOs = Convert.fromAhtEmployeeListToEmployeeDTOList(ahtEmployees);
-		return null;
+		Page<AhtEmployee> ahtEmployees = employeeRepository.findAllByContractEmpStatus(0, pageable);
+		List<EmployeeDTO> employeeDTOs = Convert.fromAhtEmployeeListToEmployeeDTOList(ahtEmployees);
+		return employeeDTOs;
 	}
 
 }

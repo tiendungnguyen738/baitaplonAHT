@@ -16,8 +16,6 @@ public interface EmployeeRepository extends JpaRepository<AhtEmployee, Long>{
 	
 	Page<AhtEmployee> findAllByEmpType(int EmpType,Pageable pageable);
 	
-//	@Query("select * "
-//			+ "from AhtEmployee u inner join AhtContractEmp c on u.id = c.ahtEmployee.id "
-//			+ "where c.ContractEmpStatus = :ContractEmpStatus",[nativeQuery = true])
-//	Page<AhtEmployee> findAllByContractEmpStatus(@Param("ContractEmpStatus") int ContractEmpStatus,Pageable pageable);
+	@Query("select e from AhtEmployee e inner join e.ahtContractEmp c where c.ContractEmpStatus = :ContractEmpStatus")
+	Page<AhtEmployee> findAllByContractEmpStatus(@Param("ContractEmpStatus") int ContractEmpStatus,Pageable pageable);
 }

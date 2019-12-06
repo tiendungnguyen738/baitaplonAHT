@@ -39,7 +39,17 @@ public class Convert {
 		
 		EmployeeDTO employeeDTO = fromAhtEmployeeToEmployeeDTO(ahtTraningEmp.getAhtEmployee());
 		trainingEmpDTO.setEmployeeDTO(employeeDTO);
+		
+		TrainingDTO trainingDTO = fromAhtTrainingToTrainingDTO(ahtTraningEmp.getAhtTraining());
+		trainingEmpDTO.setTrainingDTO(trainingDTO);
+		
 		return trainingEmpDTO;
+	}
+	
+	public static TrainingDTO fromAhtTrainingToTrainingDTO(AhtTraining ahtTraining) {
+		ModelMapper modelMapper = new ModelMapper();
+		TrainingDTO dto = modelMapper.map(ahtTraining, TrainingDTO.class);
+		return dto;
 	}
 	
 	public static List<EmployeeDTO> fromAhtEmployeeListToEmployeeDTOList(Page<AhtEmployee> ahtEmployees){
