@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>user</title>
+	<title>admin</title>
 	<meta charset="utf-8">
 	<meta name="viewport"
 		content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -32,14 +32,71 @@
 <body>
 	<div class="dashboard-main-wrapper">
 		<!-- header -->
-		<jsp:include page="header-user.jsp"></jsp:include>
+		<jsp:include page="header-admin.jsp"></jsp:include>
 		<!-- end header -->
 		
 		<!-- menu -->
-		<jsp:include page="menu-left-user.jsp"></jsp:include>
+		<jsp:include page="menu-left-admin.jsp"></jsp:include>
 		<!-- end menu -->
 		 
-		<div class="dashboard-wrapper" style="margin-top: 5%;">		
+		<div class="dashboard-wrapper" style="margin-top: 5%;">
+			<div class="col-md-12 col-sm-12 form-group" style="float:left;margin-top:5%">
+			<a href="<c:url value='/quan-tri/trang-chu/them-user'/>" style="margin-left: 1.4%;">
+				<button class="btn btn-space btn-primary">Thêm User</button>
+			</a>
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="card">
+                            <h5 class="card-header">USER LIST</h5>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered first">
+                                        <thead>
+                                           <tr>
+												<td>UserId</td>
+												<td>User Name</td>
+												<td>User Email</td>
+												<td>Update</td>
+												<td>Delete</td>
+											</tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach items="${listUser }" var="user">
+												<tr>
+													<td>${user.getId() }</td>
+													<td>${user.getUserName() }</td>
+													<td>${user.getUserMail() }</td>
+													<td>
+														${user.getId() }
+														
+													</td>
+													<td>${user.getId() }</td>
+												</tr>
+											</c:forEach>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+												<td>UserId</td>
+												<td>User Name</td>
+												<td>User Email</td>
+												<td>Update</td>
+												<td>Delete</td>
+											</tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   <%--  <ul class="pagination" style="float: right;	">
+	                    <li class="page-item"><a class="page-link" href="<c:url value='/trang-user/ds-nv-congty/${trangTruoc}'/>">Previous</a></li>
+	                    <c:forEach var="soTrang" begin="1" end="${soTrang}">               	
+							  <li class="page-item">
+							  	<a class="page-link" href="<c:url value='/trang-user/ds-nv-congty/${soTrang}'/>" style="padding-top: 29%;" >${soTrang }</a>
+							  </li>
+	                    </c:forEach>
+	                     <li class="page-item"><a class="page-link" href="<c:url value='/trang-user/ds-nv-congty/${trangSau}'/>">Next</a></li>
+                    </ul> --%>
+			</div>		
 		</div>
 	</div>
 	<script src="<c:url value='/resources/admin/assets/vendor/jquery/jquery-3.3.1.min.js'/>"></script>
@@ -61,6 +118,6 @@
 	<script src="<c:url value='/resources/admin/assets/vendor/charts/c3charts/d3-5.4.0.min.js'/>"></script>
 	<script src="<c:url value='/resources/admin/assets/vendor/charts/c3charts/C3chartjs.js'/>"></script>
 	<script src="<c:url value='/resources/admin/assets/libs/js/dashboard-ecommerce.js'/>"></script>
-	<script src="<c:url value='/resources/user/quan-ly-khoa-dao-tao.js'/>"></script>
+	<script src="<c:url value='/resources/user/quan-ly-phong-ban.js'/>"></script>
 </body>
 </html>

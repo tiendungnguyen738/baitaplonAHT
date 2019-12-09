@@ -1,7 +1,9 @@
 package aht.util;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
@@ -14,18 +16,66 @@ import aht.dto.ContractEmpDTO;
 import aht.dto.DepartmentDTO;
 import aht.dto.EmployeeDTO;
 import aht.dto.PartDTO;
+import aht.dto.RoleDTO;
 import aht.dto.TrainingDTO;
 import aht.dto.TrainingEmpDTO;
+import aht.dto.UserDTO;
+import aht.dto.UserRoleDTO;
 import aht.entity.AhtContract;
 import aht.entity.AhtContractEmp;
 import aht.entity.AhtDepartment;
 import aht.entity.AhtEmployee;
 import aht.entity.AhtParts;
+import aht.entity.AhtRole;
 import aht.entity.AhtTraining;
 import aht.entity.AhtTraningEmp;
+import aht.entity.AhtUser;
+import aht.entity.AhtUserRole;
 
 @Component
 public class Convert {
+	
+	public static RoleDTO fromAhtRoleToRoleDTO(AhtRole ahtRole) {
+		RoleDTO roleDTO = new RoleDTO();
+		roleDTO.setId(ahtRole.getId());
+		roleDTO.setRoleName(ahtRole.getRoleName());
+		return roleDTO;
+	}
+	
+	public static List<UserDTO> fromAhtUserListToUserDTOList(List<AhtUser> ahtUsers){
+		List<UserDTO> dtos = new ArrayList<UserDTO>();
+		for (AhtUser user : ahtUsers) {
+			UserDTO userDTO = fromAhtUserToUserDTO(user);
+			dtos.add(userDTO);
+		}
+		return dtos;
+	}
+	
+	
+	public static UserDTO fromAhtUserToUserDTO(AhtUser ahtUser) {
+		ModelMapper modelMapper = new ModelMapper();		
+		Set<UserRoleDTO> userRoleDTOs = conVertListAhtUserRoleToListUserRoleDTO(ahtUser.getAhtUserRoles());
+		
+		UserDTO userDTO = modelMapper.map(ahtUser, UserDTO.class);
+		
+		userDTO.setUserRoleDTOs(userRoleDTOs);
+		return userDTO;
+	}
+	
+	public static Set<UserRoleDTO> conVertListAhtUserRoleToListUserRoleDTO(Set<AhtUserRole> ahtUserRoles){
+		Set<UserRoleDTO> list = new HashSet<UserRoleDTO>();
+		for (AhtUserRole ahtUserRole : ahtUserRoles) {
+			UserRoleDTO userRoleDTO = fromAhtUserRoleToUserRoleDTO(ahtUserRole);
+			list.add(userRoleDTO);
+		}
+		return list;
+	}
+	
+	public static UserRoleDTO fromAhtUserRoleToUserRoleDTO(AhtUserRole ahtUserRole) {
+		ModelMapper modelMapper = new ModelMapper();
+		UserRoleDTO userRoleDTO = modelMapper.map(ahtUserRole, UserRoleDTO.class);
+		return userRoleDTO;
+	}
 	
 	public static PartDTO fromAhtPartToPartDTO(AhtParts ahtParts) {
 		ModelMapper modelMapper = new ModelMapper();

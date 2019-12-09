@@ -81,7 +81,6 @@
 						 </div>
 						 <div class="form-group">
 						    <form:label path="ContractEmpStatus">Trạng thái</form:label>
-						    <%-- <form:input path="trainingEmpStatus" style="width: 66%; height: 38px;margin-left: 19%;"/> --%>
 						    <form:radiobutton path="ContractEmpStatus" value="1" style="margin-left: 18%;"/>Còn Hợp Đồng
 						    <form:radiobutton path="ContractEmpStatus" value="0" style="margin-left: 18%;"/>Hết Hợp Đồng
 						 </div>
