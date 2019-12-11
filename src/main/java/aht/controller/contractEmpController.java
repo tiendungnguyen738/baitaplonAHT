@@ -25,7 +25,6 @@ import aht.dto.DepartmentDTO;
 import aht.entity.AhtContractEmp;
 import aht.service.AhtDepartmentService;
 import aht.service.ContractEmpService;
-import aht.service.EmployeeService;
 import aht.service.contractService;
 import aht.util.Convert;
 
@@ -40,9 +39,6 @@ public class contractEmpController {
 	
 	@Autowired
 	private contractService contractService;
-	
-	@Autowired
-	private EmployeeService employeeService;
 	
 	@RequestMapping(value="/trang-user/quan-ly-hd-nv")
 	public ModelAndView dsHopDongNv() {

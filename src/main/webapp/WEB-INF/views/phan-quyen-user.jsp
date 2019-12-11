@@ -41,37 +41,46 @@
 		 
 		<div class="dashboard-wrapper" style="margin-top: 5%;">
 			<div class="col-md-12 col-sm-12 form-group" style="float:left;margin-top:5%">
-			<a href="<c:url value='/quan-tri/trang-chu/them-user'/>" style="margin-left: 1.4%;">
-				<button class="btn btn-space btn-primary">Thêm User</button>
+			<a href="<c:url value='/quan-tri/trang-chu/user-role/them-user-role'/>" style="margin-left: 1.4%;">
+				<button class="btn btn-space btn-primary">Danh Sách User Chưa Phân Quyền</button>
 			</a>
 			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
-                            <h5 class="card-header">USER LIST</h5>
+                            <h5 class="card-header">Danh Sách User Đã Phân Quyền</h5>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered first">
                                         <thead>
                                            <tr>
-												<td>UserId</td>
-												<td>User Name</td>
-												<td>User Email</td>
-												<td>Update</td>
-												<td>Delete</td>
+												<td>Id</td>
+												<td>Tên User</td>
+												<td>Tên Quyền</td>
+												<td>Cập Nhật Quyền</td>
+												<td>Xóa Quyền</td>
 											</tr>
                                         </thead>
                                         <tbody>
-                                            <c:forEach items="${listUser }" var="user">
+                                            <c:forEach items="${listUserRole }" var="userRole">
 												<tr>
-													<td>${user.getId() }</td>
-													<td>${user.getUserName() }</td>
-													<td>${user.getUserMail() }</td>
-													<td style="text-align: center;">
-														<a href="<c:url value='/quan-tri/trang-chu/sua-user/${user.getId()}'/>">
-															 <img alt="" src="<c:url value='/resources/admin/assets/images/update.jpg'/>" style="width: 40px;">
-														</a>
+													<td id="idUserRole" data-idUserRole="${userRole.getId() }">${userRole.getId() }</td>
+													<td id="idUser" data-idUser="${userRole.getUserDTO().getId() }">${userRole.getUserDTO().getUserName() }</td>
+													<td class="sua-quyen">
+														<p>${userRole.getRoleDTO().getRoleName() }<p>
+														<div>
+															<select style="display:none;" class="roleList">
+																<c:forEach items="${roleList }" var="role">
+																	<option value="${role.getId() }">${role.getRoleName() }</option>
+																</c:forEach>
+															</select>
+														</div>
+													</td>
+													<td style="text-align: center;" data-value="${userRole.getId()}">
+															 <img id="update-quyen" alt="" src="<c:url value='/resources/admin/assets/images/update.jpg'/>" style="width: 40px;">
+															 <button id='cancel' style="display:none;">cancel</button>
+															<button id='update' style="display:none;">update</button>
 													</td>
 													<td style="text-align: center;">
-														<a href="<c:url value='/quan-tri/trang-chu/xoa-user/${user.getId()}'/>">
+														<a href="<c:url value='/quan-tri/trang-chu/user-role/them-user-role/xoa/${userRole.getId()}'/>" onclick="return confirm('you sure????')">
 															<img alt="" src="<c:url value='/resources/admin/assets/images/deleteicon.jpg'/>" style="width:40px;">
 														</a>
 													</td>
@@ -80,11 +89,11 @@
                                         </tbody>
                                         <tfoot>
                                             <tr>
-												<td>UserId</td>
-												<td>User Name</td>
-												<td>User Email</td>
-												<td>Update</td>
-												<td>Delete</td>
+												<td>Id</td>
+												<td>Tên User</td>
+												<td>Tên Quyền</td>
+												<td>Cập Nhật Quyền</td>
+												<td>Xóa Quyền</td>
 											</tr>
                                         </tfoot>
                                     </table>
@@ -114,6 +123,6 @@
 	<script src="<c:url value='/resources/admin/assets/vendor/charts/c3charts/d3-5.4.0.min.js'/>"></script>
 	<script src="<c:url value='/resources/admin/assets/vendor/charts/c3charts/C3chartjs.js'/>"></script>
 	<script src="<c:url value='/resources/admin/assets/libs/js/dashboard-ecommerce.js'/>"></script>
-	<script src="<c:url value='/resources/user/quan-ly-phong-ban.js'/>"></script>
+	<script src="<c:url value='/resources/user/phan-quyen.js'/>"></script>
 </body>
 </html>

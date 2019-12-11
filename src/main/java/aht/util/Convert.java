@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -35,6 +36,26 @@ import aht.entity.AhtUserRole;
 @Component
 public class Convert {
 	
+	public static AhtRole fromRoleDTOToAhtRole(RoleDTO roleDTO) {
+		AhtRole ahtRole = new AhtRole();
+		BeanUtils.copyProperties(roleDTO, ahtRole);
+		return ahtRole;
+	}
+	
+	public static AhtUserRole fromUserRoleDTOToAhtUserRole(UserRoleDTO userRoleDTO) {
+		AhtUserRole ahtUserRole = new AhtUserRole();
+		
+		AhtUser ahtUser = new AhtUser();
+		ahtUser.setId(userRoleDTO.getUserDTO().getId());
+		
+		AhtRole ahtRole = new AhtRole();
+		ahtRole.setId(userRoleDTO.getId());
+		
+		ahtUserRole.setAhtUser(ahtUser);
+		ahtUserRole.setAhtRole(ahtRole);
+		return ahtUserRole;
+	}
+	
 	public static RoleDTO fromAhtRoleToRoleDTO(AhtRole ahtRole) {
 		RoleDTO roleDTO = new RoleDTO();
 		roleDTO.setId(ahtRole.getId());
@@ -51,7 +72,11 @@ public class Convert {
 		return dtos;
 	}
 	
-	
+	public static AhtUser fromUserDTOToAhtUser(UserDTO userDTO) {
+		AhtUser ahtUser = new AhtUser();
+		BeanUtils.copyProperties(userDTO, ahtUser);
+		return ahtUser;
+	}
 	public static UserDTO fromAhtUserToUserDTO(AhtUser ahtUser) {
 		ModelMapper modelMapper = new ModelMapper();		
 		Set<UserRoleDTO> userRoleDTOs = conVertListAhtUserRoleToListUserRoleDTO(ahtUser.getAhtUserRoles());
@@ -72,8 +97,8 @@ public class Convert {
 	}
 	
 	public static UserRoleDTO fromAhtUserRoleToUserRoleDTO(AhtUserRole ahtUserRole) {
-		ModelMapper modelMapper = new ModelMapper();
-		UserRoleDTO userRoleDTO = modelMapper.map(ahtUserRole, UserRoleDTO.class);
+		UserRoleDTO userRoleDTO = new UserRoleDTO();
+		userRoleDTO.setId(ahtUserRole.getId());
 		return userRoleDTO;
 	}
 	

@@ -30,4 +30,11 @@ public class RoleServiceImpl implements RoleService{
 		return roleDTOs;
 	}
 
+	@Override
+	public RoleDTO getRoleDTO(Long id) {
+		return Convert.fromAhtRoleToRoleDTO(roleRepository.findOne(id));
+	}
+	
+	
+
 }

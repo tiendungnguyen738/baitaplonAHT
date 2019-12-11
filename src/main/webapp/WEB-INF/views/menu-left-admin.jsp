@@ -24,7 +24,7 @@
                                 </a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" href="#" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1">
+                                <a class="nav-link" href="<c:url value='/quan-tri/trang-chu/user-role'/>" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1">
                                 	<i class="fa fa-fw fa-user-circle"></i>Phân Quyền User
                                 </a>
                             </li>

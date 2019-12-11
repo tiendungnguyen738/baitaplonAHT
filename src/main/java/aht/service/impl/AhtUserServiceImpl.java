@@ -40,4 +40,27 @@ public class AhtUserServiceImpl implements AhtUserService{
 		List<UserDTO> userDTOs = Convert.fromAhtUserListToUserDTOList(ahtUserRepository.findAll());
 		return userDTOs;
 	}
+
+	@Override
+	public UserDTO findUserById(Long id) {
+		UserDTO userDTO = Convert.fromAhtUserToUserDTO(ahtUserRepository.findOne(id));
+		return userDTO;
+	}
+
+	@Override
+	public void UpdateUser(UserDTO userDTO) {
+		if(userDTO.getUserPass().equalsIgnoreCase("")) {
+			userDTO.setUserPass(ahtUserRepository.findOne(userDTO.getId()).getUserPass());
+			ahtUserRepository.save(Convert.fromUserDTOToAhtUser(userDTO));
+		}
+		else {
+			userDTO.setUserPass(bCryptPasswordEncoder.encode(userDTO.getUserPass()));
+			ahtUserRepository.save(Convert.fromUserDTOToAhtUser(userDTO));
+		}
+	}
+
+	@Override
+	public void xoaUser(Long id) {
+		ahtUserRepository.delete(id);
+	}
 }

@@ -8,4 +8,6 @@ public interface RoleService {
 
 	List<RoleDTO> getListRole();
 	
+	RoleDTO getRoleDTO(Long id);
+	
 }

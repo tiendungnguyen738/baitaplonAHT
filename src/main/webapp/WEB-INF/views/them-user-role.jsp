@@ -41,50 +41,52 @@
 		 
 		<div class="dashboard-wrapper" style="margin-top: 5%;">
 			<div class="col-md-12 col-sm-12 form-group" style="float:left;margin-top:5%">
-			<a href="<c:url value='/quan-tri/trang-chu/them-user'/>" style="margin-left: 1.4%;">
-				<button class="btn btn-space btn-primary">Thêm User</button>
+			<a href="<c:url value='/quan-tri/trang-chu/user-role'/>" style="margin-left: 1.4%;">
+				<button class="btn btn-space btn-primary">Quay Lại</button>
 			</a>
 			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
-                            <h5 class="card-header">USER LIST</h5>
+                            <h5 class="card-header">Phân Quyền Người Dùng</h5>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-bordered first">
+                                    <table class="table table-striped table-bordered first" id="bangphanquyen">
                                         <thead>
                                            <tr>
-												<td>UserId</td>
-												<td>User Name</td>
-												<td>User Email</td>
-												<td>Update</td>
-												<td>Delete</td>
+												<td>Mã Người Dùng</td>
+												<td>Tên Người Dùng</td>
+												<td>Danh Sách Quyền</td>
+												<td>Phân Quyền</td>
 											</tr>
                                         </thead>
                                         <tbody>
-                                            <c:forEach items="${listUser }" var="user">
+                                           <c:forEach items="${listUser }" var="user">
+                                           	
 												<tr>
-													<td>${user.getId() }</td>
+													<td id='id'>${user.getId() }</td>
 													<td>${user.getUserName() }</td>
-													<td>${user.getUserMail() }</td>
-													<td style="text-align: center;">
-														<a href="<c:url value='/quan-tri/trang-chu/sua-user/${user.getId()}'/>">
-															 <img alt="" src="<c:url value='/resources/admin/assets/images/update.jpg'/>" style="width: 40px;">
-														</a>
+													<td>
+														<select class="form-control" id="">
+														<option value="">---------Chọn Quyền--------</option>
+														<c:forEach items="${roleList }" var="role">
+																<option value="${role.getId() }">${role.getRoleName() }</option>
+																</c:forEach>
+														</select>
 													</td>
-													<td style="text-align: center;">
-														<a href="<c:url value='/quan-tri/trang-chu/xoa-user/${user.getId()}'/>">
-															<img alt="" src="<c:url value='/resources/admin/assets/images/deleteicon.jpg'/>" style="width:40px;">
-														</a>
+													<td style="text-align: center;" id="idUseridRole">
+														
+															 <img src="<c:url value='/resources/admin/assets/images/iconinsert.jpg'/>" style="width: 40px;">
+														
 													</td>
 												</tr>
-											</c:forEach>
+												</c:forEach>
+											
                                         </tbody>
                                         <tfoot>
                                             <tr>
-												<td>UserId</td>
-												<td>User Name</td>
-												<td>User Email</td>
-												<td>Update</td>
-												<td>Delete</td>
+												<td>Mã Người Dùng</td>
+												<td>Tên Người Dùng</td>
+												<td>Danh Sách Quyền</td>
+												<td>Phân Quyền</td>
 											</tr>
                                         </tfoot>
                                     </table>
@@ -114,6 +116,6 @@
 	<script src="<c:url value='/resources/admin/assets/vendor/charts/c3charts/d3-5.4.0.min.js'/>"></script>
 	<script src="<c:url value='/resources/admin/assets/vendor/charts/c3charts/C3chartjs.js'/>"></script>
 	<script src="<c:url value='/resources/admin/assets/libs/js/dashboard-ecommerce.js'/>"></script>
-	<script src="<c:url value='/resources/user/quan-ly-phong-ban.js'/>"></script>
+	<script src="<c:url value='/resources/user/phan-quyen.js'/>"></script>
 </body>
 </html>

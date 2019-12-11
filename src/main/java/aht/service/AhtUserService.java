@@ -12,4 +12,10 @@ public interface AhtUserService {
 	AhtUser findByUserName(String username);
 	
 	List<UserDTO> getListUser();
+	
+	UserDTO findUserById(Long id);
+	
+	void UpdateUser(UserDTO userDTO);
+	
+	void xoaUser(Long id);
 }

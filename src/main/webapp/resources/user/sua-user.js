@@ -18,5 +18,14 @@ $(document).ready(function(){
 		}
 	})
 	
-	
+	$("body").on("click","#check",function(){	
+		if(true == $(this).prop("checked")){
+			$("#userPass").removeAttr("readonly");
+			$("#nhaplaimatkhau").removeAttr("readonly");
+		}
+		else if(false == $(this).prop("checked")){
+			$("#userPass").prop("readonly","true");
+			$("#nhaplaimatkhau").prop("readonly","true");
+		}
+	})
 })

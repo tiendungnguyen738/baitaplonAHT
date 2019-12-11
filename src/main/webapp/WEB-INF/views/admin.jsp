@@ -34,7 +34,7 @@
 		<jsp:include page="header-admin.jsp"></jsp:include>
 		<jsp:include page="menu-left-admin.jsp"></jsp:include>
 		<div class="dashboard-wrapper">
-			<%=SecurityUtils.getPrincical().getUsername()%>
+			
 			<!-- noi dung -->
 		</div>
 	</div>

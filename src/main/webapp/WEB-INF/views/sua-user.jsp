@@ -47,25 +47,41 @@
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="card">
-							<h5 class="card-header">Nhập Thông Tin User</h5>
+							<a href="<c:url value='/quan-tri/trang-chu/quan-ly-user'/>" style="margin-left: 1.4%;">
+								<button class="btn btn-space btn-primary">QUAY LẠI</button>
+							</a>
+							<h5 class="card-header">Cập Nhật Thông Tin User</h5>
 							<div class="card-body">
 								<form:form id="validationform" modelAttribute="userDTO" method="post" 
-								action="/aht/quan-tri/trang-chu/them-user/them">
+								action="/aht/quan-tri/trang-chu/sua-user">
+									<div class="form-group row">
+										<form:label path="id" class="col-12 col-sm-3 col-form-label text-sm-right">Mã Người Dùng</form:label>
+										<div class="col-12 col-sm-8 col-lg-6">
+											<form:input path="id" class="form-control" readonly="true"/>
+										</div>
+									</div>
 									<div class="form-group row">
 										<form:label path="userName" class="col-12 col-sm-3 col-form-label text-sm-right">Tên Người Dùng</form:label>
 										<div class="col-12 col-sm-8 col-lg-6">
 											<form:input path="userName" class="form-control"/>
 										</div>
 									</div>
+									
+									<div class="form-group row">
+										<label for="check" class="col-12 col-sm-3 col-form-label text-sm-right">Có Thay Đổi Mật Khẩu Ko</label>
+										<div class="col-12 col-sm-8 col-lg-6">
+											<input type="checkbox" id="check" style="margin-top: 2%;"/>
+										</div>
+									</div>
 
 									<div class="form-group row">
 										<form:label path="userPass" class="col-12 col-sm-3 col-form-label text-sm-right">Mật Khẩu</form:label>
 										<div class="col-sm-4 col-lg-3 mb-3 mb-sm-0">
-											<form:password path="userPass" class="form-control" placeholder="nhập mật khẩu"/>
+											<form:password path="userPass" class="form-control" placeholder="nhập mật khẩu" readonly="true"/>
 										</div>
 										 <div class="col-sm-4 col-lg-3">
 											<input type="password" required="" id="nhaplaimatkhau"
-												data-parsley-equalto="#pass2" placeholder="Nhập lại Mật Khẩu"
+												data-parsley-equalto="#pass2" placeholder="Nhập lại Mật Khẩu" readonly="true"
 												class="form-control">
 										</div> 
 										<label id="error"></label>
@@ -78,7 +94,7 @@
 									</div>
 									<div class="form-group row text-right">
 										<div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
-											<button type="submit" class="btn btn-space btn-primary" id="submit">THÊM</button>
+											<button type="submit" class="btn btn-space btn-primary" id="submit">UPDATE</button>
 										</div>
 									</div>
 								</form:form>
@@ -120,6 +136,6 @@
 		src="<c:url value='/resources/admin/assets/vendor/charts/c3charts/C3chartjs.js'/>"></script>
 	<script
 		src="<c:url value='/resources/admin/assets/libs/js/dashboard-ecommerce.js'/>"></script>
-	<script src="<c:url value='/resources/user/quan-ly-user.js'/>"></script>
+	<script src="<c:url value='/resources/user/sua-user.js'/>"></script>
 </body>
 </html>
